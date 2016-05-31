@@ -1,165 +1,44 @@
 %# -*- coding: utf-8-unix -*-
 %%==================================================
-%% chapter01.tex for SJTU Master Thesis
+%% intro.tex for SJTU Master Thesis
 %%==================================================
 
 %\bibliographystyle{sjtu2}%[此处用于每章都生产参考文献]
-\chapter{这是什么}
+\chapter{绪论}
 \label{chap:intro}
 
-这是上海交通大学(非官方)学位论文 \LaTeX 模板，当前版本是 \version 。
+本章是课题的绪论部分。在本章节中，首先介绍了课题的实际背景，之后总结了课题的研究目的与研究意义，并对国内外对于本次课题相关的研究现状进行了分析。最后介绍了本次课题研究的主要内容。
 
-最早的一版学位模板是一位热心的物理系同学制作的。
-那份模板参考了自动化所学位论文模板，使用了CASthesis.cls文档类，中文字符处理则采用当时最为流行的 \CJKLaTeX 方案。
-我根据交大研究生院对学位论文的要求
-\footnote{\url{http://www.gs.sjtu.edu.cn/policy/fileShow.ahtml?id=130}}
-，结合少量个人审美喜好，完成了一份基本可用的交大 \LaTeX 学位论文模板。
-但是，搭建一个 \CJKLaTeX 环境并不简单，单单在Linux下配置环境和添加中文字体，就足够让新手打退堂鼓。
-在William Wang的建议下，我开始着手把模板向 \XeTeX 引擎移植。
-他完成了最初的移植，多亏了他出色的工作，后续的改善工作也得以顺利进行。
+\section{课题背景}
 
-随着我对 \LaTeX 系统认知增加，我又断断续续做了一些完善模板的工作，在原有硕士学位论文模板的基础上完成了交大学士和博士学位论文模板。
+目前，容器虚拟化的风潮正在席卷全球。容器虚拟化，又被称作操作系统级别的虚拟化。是指操作系统的内核允许多个相互隔离的用户态进程同时执行，这些用户进程会被称为容器，它们共享一个操作系统内核。这样的技术在2000年左右就出现了，比如FreeBSD jail，Virtuozzo等等都是操作系统级别的虚拟化工具。但是容器虚拟化最近才渐渐地变得广为人知，是因为Docker在2013年的发布。Docker是由PAAS服务商DotCloud实现的开源容器工具，其很好地解决了容器的构建，落地和运行的全流程，采用了很多对开发友好的技术使得容器虚拟化变得更加易用。
 
-现在，交大学位论文模板SJTUTHesis代码在github
-\footnote{\url{https://github.com/weijianwen/SJTUThesis}}
-上维护。
-你可以\href{https://github.com/weijianwen/SJTUThesis/issues}{在github上开issue}
-、或者在\href{https://bbs.sjtu.edu.cn/bbsdoc?board=TeX_LaTeX}{水源LaTeX版}发帖来反映遇到的问题。
+因为容器虚拟化技术重新进入业界的视野，整个世界的软件企业，都或多或少受到了容器技术的影响。在容器的影响下，很多经典的软件工程的概念都有了新的内涵与实现。在软件开发过程中，版本的管理与发布是一个非常值得讨论的话题。其中版本管理是指对于文件的修改可以被记录，而且可以在合适的时候进行回滚的技术，是对于文件的修改记录进行管理与控制的过程。而软件的版本发布，可以被理解为当软件的全部或者部分特性可以被交付时，进行的对软件进行发包并发布的过程。在目前的软件开发流程中，软件的过程往往是迭代的。项目组的成员会针对具体的需求规约，将软件需要实现的功能划分，迭代地去完成，而不再是如同传统的瀑布流开发过程，在软件功能全部实现后才会发布一个新版本。这样的变化就对版本管理与发布有了新的要求，要求版本的管理与发布要是持续的过程。于是持续集成与持续部署的概念就应运而生。
 
-\section{使用模板}
+持续集成，是一种软件工程中的实践，是指持续性地将所有开发者的代码合并到一个主要的分支中的过程。其目的是为了防止软件中因为代码集成而可能造成的问题。其概念最早是由Grady Booch在1991年提出\supercite{Booch}。后来持续集成作为一种实践被引入XP敏捷过程中，目前持续集成已经越来越被业界认为是软件工程中保证代码质量与交付可靠性的一种必要实践。持续集成带来的好处是显而易见的，它使得软件测试时间提前了，融入到了每次代码的改动中。同时为持续部署提供了可能性，同时也降低代码复查的时间。因此很多版本控制与发布的网站，诸如Github，Gitlab等都提供了对持续集成的支持。持续集成的概念也不再仅限于敏捷过程中。
 
-\subsection{准备工作}
-\label{sec:requirements}
+而持续部署，是一个为了解决软件发布引起的问题而提出的概念。持续部署是持续集成的一种扩展，指持续性地将代码部署到生产环境中的过程。在传统的软件过程中，软件的发布是非常繁杂而且易错的事情。因为在发布的过程中，涉及到对代码的打包，运行时环境的依赖以及配置管理等等。所以在传统的发布过程中，是耗时耗力的。而持续部署，就是希望能够降低发布新版本带来的额外成本，使得发布不再是一个高成本的过程。\supercite{CruiseControls}
 
-要使用这个模板撰写学位论文，需要在\emph{TeX系统}、\emph{中英文字体}、\emph{TeX技能}上有所准备。
+因为持续集成与持续部署，都涉及到环境的隔离等，因此在容器虚拟化技术出现之前，持续集成与持续部署往往是采用虚拟机，或自定义的隔离手段来实现每次集成与部署之间的资源隔离。而在容器虚拟化技术走向成熟后，持续集成与持续部署也有了新的一种实现手段。
 
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-	\item {\TeX}系统：所使用的{\TeX}系统要支持 \XeTeX 引擎，且带有ctex 2.x宏包，以2015年的\emph{完整}TeXLive、MacTeX发行版为佳。
-	\item 中英文字体：操作系统中需要安装\footnote{在Windows、Mac OS X 以及 Linux 上安装额外的字体，可以参考\href{https://www.searchfreefonts.com/articles/how-to-install-fonts.htm}{“How to install fonts?”}。
-}TeX Gyre Termes字体\footnote{\url{http://www.gust.org.pl/projects/e-foundry/tex-gyre/termes}}和四款Adobe中文字体
-\footnote{请从合法渠道获得Adobe字体。}：AdobeSongStd、AdobeKaitiStd、AdobeHeitiStd、AdobeFangsongStd。
-	\item TeX技能：尽管提供了对模板的必要说明，但这不是一份“ \LaTeX 入门文档”。在使用前请先通读其他入门文档。
-	\item 针对Windows用户的额外需求：学位论文模本分别使用git和GNUMake进行版本控制和构建，建议从Cygwin\footnote{\url{http://cygwin.com}}安装这两个工具。
-\end{itemize}
+容器虚拟化技术，不仅对于持续集成与持续部署的内涵有了新的定义，也因此应运而生了基于容器的机器集群。在真实的环境中，单个服务器往往是不能保证服务的可用性的，所以往往会引入多台服务器，而这就会涉及到集群管理的技术。通过使用集群的方式，引入更多的冗余资源来保证服务的可用性，是目前比较常用的手段。而在容器虚拟化技术出现之前，业界通常会采用Mesos或者其他的集群管理工具，来调度集群上的任务，来保证在尽量不浪费集群的计算能力的同时做到高可用。而这样的集群管理工具管理的单元往往是虚拟机，相较于容器而言，虽然有着更好的隔离性，但却不如容器灵活。而随着谷歌关于其容器集群管理工具的论文发表\supercite{Borg}，原本的集群管理工具也开始拥抱容器。容器所具有的灵活，轻量的特点，使得它天然契合生产环境中的某些应用场景。
 
-\subsection{模板选项}
-\label{sec:thesisoption}
+\section{研究目的以及研究意义}
 
-sjtuthesis提供了一些常用选项，在thesis.tex在导入sjtuthesis模板类时，可以组合使用。
-这些选项包括：
+本课题希望能够结合容器虚拟化技术与版本管理与控制的技术，使得用户能够在容器集群上进行代码的版本管理与发布。这样既可以方便使用容器集群的开发者的开发过程，也可以使得开发尽可能与维护解耦，满足业界目前的分工关系。
 
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-\item 学位类型：bachelor(学位)、master(硕士)、doctor(博士)，是必选项。
-\item 中国字体：adobefonts(Adobe中文字体)、winfonts(使用Windows下的中文字体，该选项未在Linux/Mac下测试)。
-\item 正文字号：cs4size(小四)、c5size(五号)。
-\item 盲审选项：使用review选项后，论文作者、学号、导师姓名、致谢、发表论文和参与项目将被隐去。
-\end{itemize}
+\section{国内外课题相关研究现状}
 
-\subsection{编译模板}
-\label{sec:process}
+而在容器虚拟化技术出现后，出现了基于容器的新的持续集成工具，Drone。Drone是一个在Github上开源的，使用golang实现的基于Docker的持续集成工具，它的目标是替代Jenkins。相比于Jenkins，Drone本身更加简洁，而且同样有丰富的插件支持。Drone更加倾向简洁，专一的设计，比如Drone并没有Scheduler的概念，而鼓励用户通过cron等工具的方式来实现定时触发build任务等功能。而且Drone使用Docker容器来进行构建并执行用户定义的脚本，解耦了资源隔离的手段与持续集成工具本身，相比Jenkins而言有着更大的想象空间。目前Drone在Github上已经收获了六千多个关注，其受欢迎程度由此可见一斑。
 
-模板默认使用GNUMake构建，GNUMake将调用latemk工具自动完成模板多轮编译：
+而对于持续部署而言，业界基本都是将继续部署与持续集成结合在一起去完成的。在持续集成完成后，如果确认代码变动没有问题，就将代码自动化地部署到服务器上。以Drone为例，它对于部署的实现方式是允许用户在持续集成后，根据集成测试的结果来决定是否将新的变动发布到生产服务器上。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={编译模板}, numbers=none]
-make clean thesis.pdf
-\end{lstlisting}
+\section{研究的主要内容}
 
-若需要生成包含“原创性声明扫描件”的学位论文文档，请将扫描件保存为statement.pdf，然后调用make生成submit.pdf。
+容器虚拟化技术出现以来，在各个领域引起了不小的影响。而同样，也使得版本发布与管理的方式有了新的可能。本课题希望基于Kubernetes容器集群，实现一个版本的管理与发布系统（以下称为Fornax）。Fornax系统希望能够实现对项目的版本管理，以及对代码的持续集成与持续部署。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={生成用于提交的学位论文}, numbers=none]
-make clean submit.pdf
-\end{lstlisting}
+在没有容器技术之前，项目的版本管理只需要使用git等工具，保证对于代码的每次修改都被记录下来并且可回滚即可，而在容器技术出现之后，对于项目而言，不仅需要对代码进行版本管理，也需要对容器的镜像进行管理。Fornax希望能够将每次可运行的代码，都打包为一个容器镜像。这样不仅可以保证在发布出现问题时，可以更好地回滚，而且也可以使得发布环境可追溯。
 
-编译失败时，可以尝试手动逐次编译，定位故障。
+在持续集成方面，Fornax支持根据每次代码的变动来自动地发起一次集成。每当代码发生了变动时，Fornax会检查配置文件中关于持续集成的配置与设定，来根据用户自定义的脚本来发起一次集成，并将集成的日志和结果持久化地记录下来。在持续集成时，会使用容器技术来保证集成时的环境隔离。同时，对于在运行时的依赖，Fornax也希望通过容器的方式来给予支持。
 
-\begin{lstlisting}[basicstyle=\small\ttfamily, caption={手动逐次编译}, numbers=none]
-xelatex -no-pdf thesis
-biber --debug thesis
-xelatex thesis
-xelatex thesis
-\end{lstlisting}
-
-\subsection{模板文件布局}
-\label{sec:layout}
-
-\begin{lstlisting}[basicstyle=\small\ttfamily,caption={模板文件布局},label=layout,float,numbers=none]
-├── LICENSE
-├── Makefile
-├── README.md
-├── bib
-│   ├── chap1.bib
-│   └── chap2.bib
-├── bst
-│   └── GBT7714-2005NLang.bst
-├── figure
-│   ├── chap2
-│   │   ├── sjtulogo.eps
-│   │   ├── sjtulogo.jpg
-│   │   ├── sjtulogo.pdf
-│   │   └── sjtulogo.png
-│   └── sjtubanner.png
-├── sjtuthesis.cfg
-├── sjtuthesis.cls
-├── statement.pdf
-├── submit.pdf
-├── tex
-│   ├── abstract.tex
-│   ├── ack.tex
-│   ├── app_cjk.tex
-│   ├── app_eq.tex
-│   ├── app_log.tex
-│   ├── chapter01.tex
-│   ├── chapter02.tex
-│   ├── chapter03.tex
-│   ├── conclusion.tex
-│   ├── id.tex
-│   ├── patents.tex
-│   ├── projects.tex
-│   ├── pub.tex
-│   └── symbol.tex
-└── thesis.tex
-\end{lstlisting}
-
-本节介绍学位论文模板中木要文件和目录的功能。
-
-\subsubsection{格式控制文件}
-\label{sec:format}
-
-格式控制文件控制着论文的表现形式，包括以下几个文件：
-sjtuthesis.cfg, sjtuthesis.cls和GBT7714-2005NLang.bst。
-其中，“cfg”和“cls”控制论文主体格式，“bst”控制参考文献条目的格式，
-
-\subsubsection{主控文件thesis.tex}
-\label{sec:thesistex}
-
-主控文件thesis.tex的作用就是将你分散在多个文件中的内容“整合”成一篇完整的论文。
-使用这个模板撰写学位论文时，你的学位论文内容和素材会被“拆散”到各个文件中：
-譬如各章正文、各个附录、各章参考文献等等。
-在thesis.tex中通过“include”命令将论文的各个部分包含进来，从而形成一篇结构完成的论文。
-对模板定制时引入的宏包，建议放在导言区。
-
-\subsubsection{各章源文件tex}
-\label{sec:thesisbody}
-
-这一部分是论文的主体，是以“章”为单位划分的，包括：
-
-\begin{itemize}[noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
-	\item 中英文摘要(abstract.tex)。前言(frontmatter)的其他部分，中英文封面、原创性声明、授权信息在sjtuthesis.cls中定义，不单独分离为tex文件。
-不单独弄成文件。
-	\item 正文(mainmatter)——学位论文正文的各章内容，源文件是chapter\emph{xxx}.tex。
-	\item 附录(app\emph{xx}.tex)、致谢(thuanks.tex)、攻读学位论文期间发表的学术论文目录(pub.tex)、个人简历(resume.tex)组成正文后的部分(backmatter)。
-参考文献列表由bibtex插入，不作为一个单独的文件。
-\end{itemize}
-
-\subsubsection{图片文件夹figure}
-\label{sec:fig}
-
-figure文件夹放置了需要插入文档中的图片文件(支持PNG/JPG/PDF/EPS格式的图片)，可以在按照章节划分子目录。
-模板文件中使用\verb|\graphicspath|命令定义了图片存储的顶层目录，在插入图片时，顶层目录名“figure”可省略。
-
-\subsubsection{参考文献数据库bib}
-\label{sec:bib}
-
-目前参考文件数据库目录只存放一个参考文件数据库thesis.bib。
-关于参考文献引用，可参考第\ref{chap:example}章中的例子。
-
+在持续部署方面，Fornax是基于Kubernetes容器集群来进行的。Kubernetes是一个基于Docker的容器管理工具，由谷歌开源，因为谷歌在2016年发布的论文\supercite{Borg}而被人所知。不同于其他的集群管理工具，它将一个或多个容器的组合作为基本的调度单位。Fornax希望可以基于Kubernetes进行对于用户代码的持续部署。每当用户代码的持续集成结束后，会根据持续集成的结果来进行相应的代码部署，用户可以在配置文件中关于持续部署的设定中写明代码部署对应的集群等。
