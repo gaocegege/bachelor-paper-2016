@@ -25,7 +25,7 @@
   \ifsjtu@master\relax\else
     \ifsjtu@doctor\relax\else
       \ClassError{sjtuthesis}%
-      		{You have to specify one of thesis options: bachelor, master or doctor.}{}
+        {You have to specify one of thesis options: bachelor, master or doctor.}{}
     \fi
   \fi
 \fi
@@ -98,15 +98,15 @@
 \newcommand{\dif}{\mathrm{d}}
 
 \def\cleardoublepage{\clearpage%
-	\if@openright%
-	  \ifodd
-	    \c@page%
-	  \else%
-  	    \thispagestyle{empty}%
-  	    \hbox{}%
-	    \newpage%
-	  \fi%
-	\fi}
+  \if@openright%
+    \ifodd
+      \c@page%
+    \else%
+        \thispagestyle{empty}%
+        \hbox{}%
+      \newpage%
+    \fi%
+  \fi}
 
 % CJK-LaTeX Logo \CJKLaTeX
 \newcommand{\CJKLaTeX}{CJK--\LaTeX} 
@@ -137,31 +137,31 @@
 \renewcommand{\lstlistingname}{\sjtu@value@listingname}
 % Title Settings at the chapter Level
 \ctexset{chapter={
-	nameformat={\Large\bfseries},
-	titleformat={\Large\bfseries},
-	beforeskip={15\p@},
-	afterskip={12\p@},
-	}
+  nameformat={\Large\bfseries},
+  titleformat={\Large\bfseries},
+  beforeskip={15\p@},
+  afterskip={12\p@},
+  }
 }
 % Title Settings at the section Level
 \ctexset{section={
-	format={\large\bfseries},
-	afterskip={1.0ex \@plus .2ex},
-	}
+  format={\large\bfseries},
+  afterskip={1.0ex \@plus .2ex},
+  }
 }
 % Title Settings at the subection Level
 \ctexset{subsection={
-	format={\bfseries\normalsize},
-	indent={0\ccwd},
-	afterskip={1.0ex \@plus .2ex},
-	}
+  format={\bfseries\normalsize},
+  indent={0\ccwd},
+  afterskip={1.0ex \@plus .2ex},
+  }
 }
 % Title Settings at the subsubection Level
 \ctexset{subsubsection={
-	format={\normalfont\normalsize},
-	indent={0\ccwd},
-	afterskip={1.0ex \@plus .2ex},
-	}
+  format={\normalfont\normalsize},
+  indent={0\ccwd},
+  afterskip={1.0ex \@plus .2ex},
+  }
 }
 
 % bullets in the item
@@ -424,8 +424,8 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  	{\bf\zihao{3} \sjtu@value@school}\\
-  	{\bf\zihao{3} \sjtu@label@original}
+    {\bf\zihao{3} \sjtu@value@school}\\
+    {\bf\zihao{3} \sjtu@label@original}
   \end{center}
   \vskip 10pt
   {\par\zihao{-4}\sjtu@label@originalcontent\par}
@@ -442,8 +442,8 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  	{\bf\zihao{3} \sjtu@value@school}\\
-  	{\bf\zihao{3} \sjtu@label@authorization}
+    {\bf\zihao{3} \sjtu@value@school}\\
+    {\bf\zihao{3} \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
   {\par\zihao{-4}\sjtu@label@authorizationcontent\par}
@@ -482,42 +482,42 @@
 	  \renewcommand{\headheight}{32pt}
 	}
 \else
-	% 研究生学位论文页眉页脚设置
-	\if@twoside
-	  %% 正文页眉页脚
-	  \fancypagestyle{main}{
-	    \fancyhead[LO, RE]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
-	    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
-	    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-	    \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
-	    \renewcommand{\headheight}{32pt}
-	  }
-	  %% 开章页页眉页脚
-	  \fancypagestyle{plain}{
-	    \fancyhf{}
-	    \fancyhead[LO,RE]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}}
-	    \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
-	    \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
-	    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-	    \renewcommand{\headheight}{32pt}
-	  }
-	\else
-	%% 正文页
-	\fancypagestyle{main}{
-	  \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
-	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
-	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-	  \renewcommand{\headheight}{32pt}
-	}
-	\fancypagestyle{plain}{
-	  \fancyhf{}
-	  \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}}
-	  \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
-	  % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
-	  \fancyfoot[C]{\small ---~{\bf\thepage}~---}
-	  \renewcommand{\headheight}{32pt}
-	}
-	\fi
+  % 研究生学位论文页眉页脚设置
+  \if@twoside
+    %% 正文页眉页脚
+    \fancypagestyle{main}{
+      \fancyhead[LO, RE]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
+      \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
+      \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+      \fancyfoot[C]{\small ---~{\bfseries\thepage}~---}
+      \renewcommand{\headheight}{32pt}
+    }
+    %% 开章页页眉页脚
+    \fancypagestyle{plain}{
+      \fancyhf{}
+      \fancyhead[LO,RE]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}}
+      \fancyhead[RO]{\nouppercase{\small\kaishu\leftmark}}
+      \fancyhead[LE]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+      \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+      \renewcommand{\headheight}{32pt}
+    }
+  \else
+  %% 正文页
+  \fancypagestyle{main}{
+    \fancyhead[L]{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}
+    \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
+    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    \renewcommand{\headheight}{32pt}
+  }
+  \fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[L]{\nouppercase{\small\kaishu\sjtu@value@school\sjtu@value@chinesedegree\sjtu@label@thesis}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\leftmark}}
+    % \fancyhead[L]{\small {\it\sjtu@value@titlemark}}
+    \fancyfoot[C]{\small ---~{\bf\thepage}~---}
+    \renewcommand{\headheight}{32pt}
+  }
+  \fi
 \fi
 
 % 中英文摘要
