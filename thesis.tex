@@ -23,19 +23,19 @@
 \include{tex/id}
 \maketitle
 
-\makeenglishtitle
+% \makeenglishtitle
 
-\makeatletter
-\ifsjtu@submit\relax
-	\includepdf{pdf/original.pdf}
-	\cleardoublepage
-	\includepdf{pdf/authorization.pdf}
-	\cleardoublepage
-\else
-	\makeDeclareOriginal
-	\makeDeclareAuthorization
-\fi
-\makeatother
+% \makeatletter
+% \ifsjtu@submit\relax
+% 	\includepdf{pdf/original.pdf}
+% 	\cleardoublepage
+% 	\includepdf{pdf/authorization.pdf}
+% 	\cleardoublepage
+% \else
+% 	\makeDeclareOriginal
+% 	\makeDeclareAuthorization
+% \fi
+% \makeatother
 
 
 \frontmatter 	% 使用罗马数字对前言编号
@@ -46,7 +46,7 @@
 
 %% 目录、插图目录、表格目录
 \tableofcontents
-\listoffigures
+% \listoffigures
 % \addcontentsline{toc}{chapter}{\listfigurename} %将插图目录加入全文目录
 % \listoftables
 % \addcontentsline{toc}{chapter}{\listtablename}  %将表格目录加入全文目录
@@ -60,7 +60,7 @@
 %% 正文内容
 \pagestyle{main}
 \include{tex/intro}
-\include{tex/tech}
+% \include{tex/tech}
 \include{tex/impl}
 \include{tex/detail}
 \include{tex/test}
@@ -83,12 +83,7 @@
 %% 参考资料
 % \phantomsection
 % \addcontentsline{toc}{chapter}{参考文献}
-% 逐个导入参考文献数据库
 \bibliography{bib/thesis.bib}
-\bibliography{bib/intro.bib}
-\bibliography{bib/tech.bib}
-\bibliography{bib/detail.bib}
-\bibliography{bib/test.bib}
 
 %% 致谢、发表论文、申请专利、参与项目、简历
 %% 用于盲审的论文需隐去致谢、发表论文、申请专利、参与的项目

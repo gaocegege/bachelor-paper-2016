@@ -43,7 +43,7 @@ Fornax作为一个生产环境可用的版本管理与发布的工具，支持�
 
 \section{代码统计}
 
-Fornax代码情况使用cloc\supercite{cloc}统计，去除了Fornax中对于其他模块的代码依赖。情况如表\ref{tab:code}所示，Fornax的主要功能由go语言实现，其中包括八个核心的模块，以及所有的测试用例，因此go语言的代码占代码总量的大部分。除此之外，Fornax在启动时有很多的运行时依赖，这些依赖的运行以及Fornax的启动都是通过Bourne Shell脚本来完成的，其中包括启动本地的短生命周期的Docker Registry，启动Fornax，执行端到端的测试等内容。
+Fornax代码情况使用cloc\cite{cloc}统计，去除了Fornax中对于其他模块的代码依赖。情况如表\ref{tab:code}所示，Fornax的主要功能由go语言实现，其中包括八个核心的模块，以及所有的测试用例，因此go语言的代码占代码总量的大部分。除此之外，Fornax在启动时有很多的运行时依赖，这些依赖的运行以及Fornax的启动都是通过Bourne Shell脚本来完成的，其中包括启动本地的短生命周期的Docker Registry，启动Fornax，执行端到端的测试等内容。
 
 \begin{table}[!hpb]
   \centering
