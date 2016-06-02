@@ -465,6 +465,12 @@
 	  \fancyfoot[C]{\small 第~{\bfseries\thepage}~页\,共~{\bfseries\pageref{last}}~页}
 	  \renewcommand{\headheight}{32pt}
 	}
+  \fancypagestyle{front}{
+    \fancyhf{}
+    \fancyhead[L]{\includegraphics[width=0.22\textwidth]{figure/sjtubanner}}
+    \fancyhead[R]{\nouppercase{\small\kaishu\sjtu@value@titlemark}}
+    \renewcommand{\headheight}{32pt}
+  }
   %% 英文大摘要
   \fancypagestyle{biglast}{
     \fancyhf{}
