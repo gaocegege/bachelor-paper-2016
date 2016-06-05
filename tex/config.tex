@@ -1,0 +1,50 @@
+% \chapter{Fornax配置文件格式}
+
+% 以下为Fornax配置文件格式。配置文件是YAML格式的文本文件，一般存在于用户的远端仓库中，在Fornax进行构建版本时会根据其中内容进行自定义的操作。
+
+% \begin{lstlisting}[caption={配置文件格式}]
+% integration:
+%   image: <image name>
+%   environment:
+%     - <key>=<value>
+%     - <key>=<value>
+%   commands:
+%     - <cmd1>
+%     - <cmd2>
+%   services:
+%     <service name 1>:
+%       image: <image name>
+%       environment:
+%         - <key>=<value>
+%         - <key>=<value>
+%       commands:
+%         - <cmd1>
+%         - <cmd2>
+%     ...
+% pre_build:
+%   dockerfile_path: <path of the Dockerfile>
+%   image: <image name>
+%   environment:
+%     - <key>=<value>
+%     - <key>=<value>
+%   commands:
+%     - <cmd1>
+%     - <cmd2>
+%   outputs:
+%     - <path1>
+%     - <path2>
+% build:
+%   dockerfile_path: <path of the Dockerfile>
+% post_build:
+%   image: <image name>
+%   environment:
+%     - <key>=<value>
+%     - <key>=<value>
+%   commands:
+%     - <cmd1>
+%     - <cmd2>
+% deploy:
+%  - <application name>:
+%     cluster: <cluster name>
+%     partition: <partition name>
+% \end{lstlisting}

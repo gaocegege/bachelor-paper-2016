@@ -6,11 +6,11 @@
 \begin{abstract}
 \thispagestyle{front}
 
-最近几年来，以Docker为代表的容器虚拟化技术越来越被业界所接受，成为部署应用时的另一种选择。以容器的方式进行部署，具有跨平台、较低的资源损耗、较好的隔离性的优点。
+最近几年来，以Docker为代表的容器虚拟化技术越来越被业界所接受，成为部署应用时的另一种选择。而容器集群技术使得开发者无需关注底层架构与环境的情况下，快速部署自己的应用。
 
-本文分析了传统的软件过程，以及容器虚拟化技术对当下软件工程的影响，并基于容器虚拟化技术和容器集群，实现了从代码提交，到持续集成，再到最后的持续部署发布的版本管理与发布系统Fornax。Fornax具有三个特性，持续集成，持续部署与版本管理。传统的持续集成与持续部署工具，只关注于持续集成与持续部署，而Fornax不仅是一个持续集成与持续部署的工具，也关注于对于版本的管理。
+容器和容器集群使得应用的部署变得简单，而本文希望能够在基于容器集群的架构上，实现从代码提交，到持续集成，再到最后的持续部署发布的全流程的自动化系统Fornax，进一步简化运维工作。Fornax在构建阶段使用了容器虚拟化技术来进行构建的隔离，并且在每次构建后产出一个版本镜像，实现了代码与运行环境两者的共同管理。而持续集成与持续部署，是建立在Kubernetes容器集群上的。
 
-Fornax在构建阶段使用了容器虚拟化技术来进行构建的隔离，并且在每次构建后产出一个版本镜像，实现了代码与运行环境两者的共同管理。并在最后，进行了针对Fornax的功能性测试以及分布式部署的探索，保证了Fornax的功能的合约以及在生产环境下的可用性。
+在本文的最后部分，对Fornax的功能性测试以及分布式的部署进行了探索，保证了Fornax的功能的合约以及在生产环境下的可用性。目前Fornax已经在线上运行，为用户提供服务，这也从另一方面证明了Fornax的可用性。
 
 \keywords{\large 容器虚拟化 \quad 版本管理 \quad 持续集成}
 \end{abstract}
@@ -18,11 +18,7 @@ Fornax在构建阶段使用了容器虚拟化技术来进行构建的隔离，�
 \begin{englishabstract}
 \thispagestyle{front}
 
-In recent years, operating-system-level virtualization is increasingly being accepted by the industry, and has become another option when deploying applications. It has the advantage of cross-platform, low resource consumption, and better isolation.
 
-This paper analyzes the traditional software process, and the operating-system-level virtualization. Then we build a version release system called Fornax. Fornax has three features: continuous integration, continuous deployment and version management.Traditional continuous integration and continuous deployment tools only care about continuous integration or continuous deployment, and Fornax focus on the version management.
-
-Fornax uses operating-system-level virtualization to isolate the building tasks. And When the building task is done, Fornax would push a image to registry, makes both the code and runtime under control. At the end, This paper introduces the end-to-end test and distributed architecture, to illustrate the functionality and usability.
 
 \englishkeywords{\large Containerization, Version Control, Continuous Integration}
 \end{englishabstract}
