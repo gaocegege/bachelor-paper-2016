@@ -3,12 +3,6 @@
 
 本章从细节实现的角度出发，自顶而下地介绍了Fornax每个模块的具体实现。在第\ref{chap:impl}章中提到，API模块是Fornax与客户端交互的入口。因此对实现的具体细节分析，将从最顶层的API模块入手。
 
-% 实现的细节分析
-% 1. 持续集成（有service）
-% 2. 构建与发布
-% 3. 数据库设计
-% 4. 日志消息
-
 \section{Fornax初始化}
 
 Fornax在实现上依赖很多外部的服务，其中包括MongoDB，Kafka，和Docker等。因此，如果要运行Fornax，必须有这些依赖的支持。为了实现依赖的可配置，Fornax采取了环境变量的方式定义这些依赖。表\ref{tab:env}列出了Fornax中所有的环境变量。其中前两项为MongoDB和Kafka服务所在的地址，通常是以IP或者域名的形式给出，而端口则是在两个服务启动时所在的默认端口。而DOCKER\_HOST和DOCKER\_HOST\_DIR是为了支持多个Docker Host做构建而定义的环境变量。而以REGISTRY为前缀的三个环境变量是与Docker Registry相关的配置，它们定义了地址与用户名密码，它们的作用会在之后进行更为详细的阐述。上面提到的环境变量是Fornax中为了解决依赖可配置而引入的，而其他的环境变量则是出于便于开发的目的，在此不做过多介绍。
@@ -68,50 +62,52 @@ Fornax中的服务，是以REST API的形式暴露给外界的，而API模块就
 
 \section{异步事件管理模块}
 
-异步事件管理模块，是处理服务与版本创建的模块。在Fornax最初的设计中，所有的逻辑处理都是在主线程中完成，后来随着服务与版本在创建时的复杂性的提高，这样的设计不能满足需求，因此引入了异步事件管理模块，将创建服务与版本的过程异步化，使得它们不会阻塞主进程。异步事件管理模块的运行模型是传统的事件循环模型，异步事件管理模块的运行过程可以抽象为一个永远不会退出的循环，当收到来自API模块发送到来的消息时，会调用相关的处理器来处理该事件，并且会在处理结束后执行定义的钩子函数，来进行数据库操作，或者收尾工作等等。
+异步事件管理模块，是处理服务与版本创建的模块。在Fornax最初的设计中，所有的逻辑处理都是在主线程中完成，后来随着服务与版本在创建时的复杂性的提高，这样的设计不能满足需求，因此引入了异步事件管理模块，将创建服务与版本的过程异步化，使得它们不会阻塞主进程。
 
-\begin{lstlisting}[caption={抽象后的异步事件管理器结构与实现}]
-type AsyncManager struct {
-	operations map[Operation]OperationHandler
-	events map[EventID]*Event
-	newEvents chan *Event
-	deleteEvents chan *Event
-	lock sync.Mutex
-}
+异步事件管理模块的运行模型是传统的事件循环模型，异步事件管理模块的运行过程可以抽象为一个永远不会退出的循环，当收到来自API模块发送到来的消息时，会调用相关的处理器来处理该事件，并且会在处理结束后执行定义的钩子函数，来进行数据库操作，或者收尾工作等等。采取事件循环的模型，使得Fornax在请求量巨大时，不会因为同时处理多个构建任务而崩溃。而这样的模型使得Fornax支持通过拒绝一部分请求，或者限制最大请求队列长度等方式来解决请求过载的问题。
 
-func (am *AsyncManager) Start() {
-	go func() {
-		for {
-			select {
-			case event := <-am.newEvents:
-				go func() {
-					operationHandler, ok := am.operations[event.Operation]
-					err := operationHandler(event)
-					event.Lock.Lock()
-					defer event.Lock.Unlock()
-					// Deal with the error and call the post hook function.
-				}()
-			case event := <-am.deleteEvents:
-				delete(am.events, event.EventID)
-			}
-		}
-	}()
-}
-\end{lstlisting}
+% \begin{lstlisting}[caption={抽象后的异步事件管理器结构与实现}]
+% type AsyncManager struct {
+% 	operations map[Operation]OperationHandler
+% 	events map[EventID]*Event
+% 	newEvents chan *Event
+% 	deleteEvents chan *Event
+% 	lock sync.Mutex
+% }
 
-% \begin{algorithm}
-% \caption{异步事件管理模块事件循环}
-% \label{algo:eventloop}
-% \begin{algorithmic}
-% \LOOP
-% \IF {there is a new event sent to the async event manager} 
-% \STATE Create a new goroutine and call the handler function for the event.
-% \ELSIF {There is a command to delete a event}
-% \STATE Delete the event from the manager.
-% \ENDIF 
-% \ENDLOOP
-% \end{algorithmic}
-% \end{algorithm}
+% func (am *AsyncManager) Start() {
+% 	go func() {
+% 		for {
+% 			select {
+% 			case event := <-am.newEvents:
+% 				go func() {
+% 					operationHandler, ok := am.operations[event.Operation]
+% 					err := operationHandler(event)
+% 					event.Lock.Lock()
+% 					defer event.Lock.Unlock()
+% 					// Deal with the error and call the post hook function.
+% 				}()
+% 			case event := <-am.deleteEvents:
+% 				delete(am.events, event.EventID)
+% 			}
+% 		}
+% 	}()
+% }
+% \end{lstlisting}
+
+\begin{algorithm}
+\caption{异步事件管理模块事件循环}
+\label{algo:eventloop}
+\begin{algorithmic}
+\LOOP
+\IF {there is a new event sent to the async event manager} 
+\STATE Create a new goroutine and call the handler function for the event.
+\ELSIF {There is a command to delete a event}
+\STATE Delete the event from the manager.
+\ENDIF 
+\ENDLOOP
+\end{algorithmic}
+\end{algorithm}
 
 在其他语言中实现这样事件驱动的模型，是比较复杂的。而在go语言中，因为其对于通道（channel）和轻量级线程（goroutine）的支持，所以实现这样一个模型非常简单，这也是Fornax最终采取这样的模型进行异步化创建服务和版本任务的原因之一。异步事件管理器的数据结构如代码所示，其由一个以操作为键，以处理器函数为值的图、一个以事件的唯一标识符为键，以对应的事件的指针为值的图、以及两个通道和一个互斥锁构成。在执行Start函数时，首先会创建一个新的线程，并在该线程中进入一个无限循环，在循环中，会使用go语言中的select特性，来进行对事件的监听。如果接收到新的事件，就会去operations中寻找对应的处理器函数，并调用其进行处理。目前只有两种有意义的操作类型，即创建服务和创建版本，而因为两者之间不存在数据竞争，因此在进行处理时不需要加锁，只有在涉及到对事件本身的属性的修改时才需要加锁。
 
@@ -121,16 +117,16 @@ func (am *AsyncManager) Start() {
 
 Docker管理模块是在执行镜像的构建与打包时会被调用的模块。Docker管理模块会负责与Docker Host交互，当有创建版本的请求被发起时，会涉及到对于版本镜像的构建和发布。因此，Docker管理模块需要维护在构建与发布镜像时的所有信息。而且在构建镜像时，也需要对Docker Registry进行设定，保证用户可以从其可见的基础镜像中构建新的镜像。
 
-\begin{lstlisting}[caption={Docker管理模块结构}]
-type DockerManager struct {
-  client     *docker_client.Client
-  registry   string
-  authConfig *AuthConfig
-  endPoint   string
-}
-\end{lstlisting}
+% \begin{lstlisting}[caption={Docker管理模块结构}]
+% type DockerManager struct {
+%   client     *docker_client.Client
+%   registry   string
+%   authConfig *AuthConfig
+%   endPoint   string
+% }
+% \end{lstlisting}
 
-Docker管理模块的结构如代码所示，其中最主要的对象是Docker Client的抽象对象，该对象会负责与Docker Host进行交互，而诸如构建、发布等功能也是通过该对象进行的。而其他的对象，是在执行构建与发布时需要用到的参数。在构建与发布时，用户通常会将镜像推送到自建的Docker Registry上，这样的需求要求在进行构建与发布时，允许用户来指定一些用来认证的配置，以保证推送的成功。
+Docker管理模块的结构相对于其他模块而言比较简单，其中最主要的对象是Docker Client的抽象对象，该对象会负责与Docker Host进行交互，而诸如构建、发布等功能也是通过该对象进行的。而其他的对象，是在执行构建与发布时需要用到的参数。在构建与发布时，用户通常会将镜像推送到自建的Docker Registry上，这样的需求要求在进行构建与发布时，允许用户来指定一些用来认证的配置，以保证推送的成功。
 
 \section{版本管理系统管理模块}
 
@@ -154,54 +150,26 @@ Docker管理模块的结构如代码所示，其中最主要的对象是Docker C
 
 因为持续集成管理模块贯穿了创建版本流程的始终，因此对于该模块的实现介绍将从创建版本的流程出发。在创建版本的过程中，第一步是将仓库的代码进行Clone，接下来是解析代码中的配置文件。配置文件是用户定义的，与代码存放在相同目录下的一个YAML格式的文件。Fornax定义了一种语法与惯例，使得用户在按照语法将自己的需求以YAML文件的形式描述后Fornax可以根据该文件执行相应的操作。该文件默认名为caicloud.yml，如果在用户的仓库中存在以此命名的文件，Fornax会尝试解析该文件。这是持续集成管理模块的第一项职责。
 
-\begin{lstlisting}[caption={配置文件格式}]
+\begin{lstlisting}[caption={配置文件实例}]
 integration:
-  image: <image name>
-  environment:
-    - <key>=<value>
-    - <key>=<value>
-  commands:
-    - <cmd1>
-    - <cmd2>
   services:
-    <service name 1>:
-      image: <image name>
-      environment:
-        - <key>=<value>
-        - <key>=<value>
-      commands:
-        - <cmd1>
-        - <cmd2>
-    ...
-pre_build:
-  dockerfile_path: <path of the Dockerfile>
-  image: <image name>
-  environment:
-    - <key>=<value>
-    - <key>=<value>
+    mongo:
+      image: mongo:2.4
+      command: mongod
+  image: golang:1.5
+  volumes:
+    - .:/go/src/github.com/gaocegege/the-big-brother-is-watching-you
+  env:
+    - GOPATH=/go
   commands:
-    - <cmd1>
-    - <cmd2>
-  outputs:
-    - <path1>
-    - <path2>
-build:
-  dockerfile_path: <path of the Dockerfile>
-post_build:
-  image: <image name>
-  environment:
-    - <key>=<value>
-    - <key>=<value>
-  commands:
-    - <cmd1>
-    - <cmd2>
-deploy:
- - <application name>:
-    cluster: <cluster name>
-    partition: <partition name>
+    - pwd
+    - ls
+    - go get github.com/tools/godep
+    - godep go build -race .
+    - ./the-big-brother-is-watching-you --mongo-db-ip=mongo
 \end{lstlisting}
 
-代码所示是一个完整的配置文件的规约。其中包括了五个阶段的配置信息，分别是持续集成、构建前、构建与发布、构建后、以及发布。在Fornax中，整个创建版本的过程都是由该配置文件进行控制的。用户可以通过定义各个阶段的配置，来确定构建阶段的行为。持续集成管理模块会对该配置文件进行解析，将其解析为一个运行时的树状结构，然后逐一执行。解析过程与传统编译器的词法分析器和语法分析器的实现类似，通过将配置文件的结构以结构体的形式定义，将配置文件解析为树状结构。树状结构可以直接被持续集成管理模块中的运行时所解释，从而根据配置执行相应的任务。
+代码所示是一个完整的配置文件。其中包括了五个阶段的配置信息，分别是持续集成、构建前、构建与发布、构建后、以及发布。在Fornax中，整个创建版本的过程都是由该配置文件进行控制的。用户可以通过定义各个阶段的配置，来确定构建阶段的行为。持续集成管理模块会对该配置文件进行解析，将其解析为一个运行时的树状结构，然后逐一执行。解析过程与传统编译器的词法分析器和语法分析器的实现类似，通过将配置文件的结构以结构体的形式定义，将配置文件解析为树状结构。树状结构可以直接被持续集成管理模块中的运行时所解释，从而根据配置执行相应的任务。
 
 \subsection{执行树构建}
 
@@ -307,7 +275,7 @@ Docker后台管理模块是在开发的后期被引入的一个模块，它会�
   \end{tabular}
 \end{table}
 
-在Fornax收到动作字段为查看日志的请求包，并且该包中操作字段为开始时，会返回一个包以表示收到该请求包，返回的包格式如表\ref{protocol-server}所示，在返回的包中，动作字段统一会被置为返回，而返回字段会被置为收到请求，请求的唯一标识符字段会被置为之前请求包中自动生成的通用唯一识别码，而错误码为零，错误信息会置为成功。与此同时，日志模块会创建一个新的线程，并且在线程中创建一个Kafka的消费者对象，该对象会订阅根据请求中用户、服务、版本三个唯一标识符而确定的唯一的日志主题，随后会向与客户端建立的会话中推送包含日志信息的数据包。这是由Fornax主动推送给客户端的包，其格式与客户端向Fornax发起的请求包格式一致，但字段的值会有所不同。其动作字段会被置为推送日志，而不是查看日志。而接口字段仍然与客户端的请求包中保持一致，其后的用户、服务、版本三个唯一标识符也同样与客户端的请求包中保持一致。而相比于客户端向Fornax发送的请求包，两者最大的不同在于其日志字段不再为空，而是会根据Kafka中订阅的主题获得的日志数据来进行发送。客户端在接收到Fornax发送的日志推送包时，会返回一个格式如表\ref{tab:protocol-server}所示的包，以通知Fornax该包已经被接收。
+在Fornax收到动作字段为查看日志的请求包，并且该包中操作字段为开始时，会返回一个包以表示收到该请求包，返回的包格式如表\ref{tab:protocol-server}所示，在返回的包中，动作字段统一会被置为返回，而返回字段会被置为收到请求，请求的唯一标识符字段会被置为之前请求包中自动生成的通用唯一识别码，而错误码为零，错误信息会置为成功。与此同时，日志模块会创建一个新的线程，并且在线程中创建一个Kafka的消费者对象，该对象会订阅根据请求中用户、服务、版本三个唯一标识符而确定的唯一的日志主题，随后会向与客户端建立的会话中推送包含日志信息的数据包。这是由Fornax主动推送给客户端的包，其格式与客户端向Fornax发起的请求包格式一致，但字段的值会有所不同。其动作字段会被置为推送日志，而不是查看日志。而接口字段仍然与客户端的请求包中保持一致，其后的用户、服务、版本三个唯一标识符也同样与客户端的请求包中保持一致。而相比于客户端向Fornax发送的请求包，两者最大的不同在于其日志字段不再为空，而是会根据Kafka中订阅的主题获得的日志数据来进行发送。客户端在接收到Fornax发送的日志推送包时，会返回一个格式如表\ref{tab:protocol-server}所示的包，以通知Fornax该包已经被接收。
 
 在Fornax中，日志模块是运行在一个单独的线程中的。在日志写入Kafka的部分实现中，是使用了本地与Kafka相互配合的方式来进行的。首先，关于构建的日志会写入到一个临时文件中，这是最开始Fornax的实现。而在开发中发现将日志信息存储在本地不利于Fornax的分布式部署，因此在之后的实现中引入了Kafka的依赖。在引入Kafka后，Fornax同样会先将日志信息存储在本地的文件中，而在每次构建时，会启动一个新的线程去监听日志文件的变化。目前监听的实现方式是轮询，每隔一定的时间间隔Fornax会重新访问本地的临时日志文件，将变动以消息的方式发送给Kafka。日志写入Kafka的实现是日志模块与Fornax主要功能想耦合的一部分，在进行构建时会调用该部分实现进行日志的写入。
 

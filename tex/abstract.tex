@@ -6,7 +6,7 @@
 \begin{abstract}
 \thispagestyle{front}
 
-最近几年来，以Docker为代表的容器虚拟化技术越来越被业界所接受，成为部署应用时的另一种选择。而容器集群技术使得开发者无需关注底层架构与环境的情况下，快速部署自己的应用。
+最近几年来，以Docker为代表的容器虚拟化技术越来越被业界所接受，成为部署应用时的另一种选择。而容器集群技术使得开发者无需关注底层架构与环境的情况下，快速部署自己的应用，快速响应需求。
 
 容器和容器集群使得应用的部署变得简单，而本文希望能够在基于容器集群的架构上，实现从代码提交，到持续集成，再到最后的持续部署发布的全流程的自动化系统Fornax，进一步简化运维工作。Fornax在构建阶段使用了容器虚拟化技术来进行构建的隔离，并且在每次构建后产出一个版本镜像，实现了代码与运行环境两者的共同管理。而持续集成与持续部署，是建立在Kubernetes容器集群上的。
 
@@ -18,7 +18,11 @@
 \begin{englishabstract}
 \thispagestyle{front}
 
+In recent years, operating-system-level virtualization is increasingly being accepted by the industry, and has become another option when deploying applications. The clustering system helps programmers to respond to customer demand quickly and efficiently.
 
+Operating-system-level virtualization makes applications easier to deploy, and this paper want to implement a automation system for continuous integration, continuous deployment and version release management. Fornax uses operating-system-level virtualization to isolate the building tasks. And When the building task is done, Fornax would push a image to registry, makes both the code and runtime under control. And continuous integration and continuous deployment are based on Kubernetes.
+
+In the end, Fornax introduces the end-to-end test and distributed architecture, to illustrate the functionality and usability. Now Fornax is running in production, on the other hand it shows the availability of Fornax.
 
 \englishkeywords{\large Containerization, Version Control, Continuous Integration}
 \end{englishabstract}
