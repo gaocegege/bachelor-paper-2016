@@ -11,7 +11,8 @@ Fornax在实现上依赖很多外部的服务，其中包括MongoDB，Kafka，�
 
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:env]{指向一个表格的表目录索引}{Fornax环境变量配置}{Table}{}
+  \caption{Fornax环境变量配置}
+  \label{tab:env}
   \begin{tabular}{ll} \toprule
     环境变量 & 描述 \\ \midrule
     MONGO\_DB\_IP & MongoDB服务地址 \\
@@ -31,7 +32,7 @@ Fornax在实现上依赖很多外部的服务，其中包括MongoDB，Kafka，�
 % 有error？
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:api]{}{Fornax REST API}{Table}{}
+  \caption[tab:api]{Fornax REST API}
   \begin{tabular}{lll} \toprule
     URL & 方法 & 描述 \\ \midrule
     /\{user\_id\}/services & POST & 创建新的服务 \\
@@ -135,7 +136,8 @@ Docker管理模块的结构相对于其他模块而言比较简单，其中最�
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\textwidth]{detail/vcs.png}
-  \bicaption[fig:vcs]{Fornax版本管理系统管理模块UML类图}{Fornax版本管理系统管理模块UML类图}{Fig}{}
+  \caption{Fornax版本管理系统管理模块UML类图}
+  \label{fig:vcs}
 \end{figure}
 
 由图\ref{fig:vcs}所示，版本管理系统管理模块向外暴露两个接口，分别对应着Clone操作和给一个指定的分支打上标签的操作。这两个操作会在异步事件管理模块处理相应事件时被调用。而为了满足适配多种版本管理系统的要求，版本管理系统管理模块将所有对于版本管理系统的操作抽象成了一个接口，由接口定义了一系列标准地，Fornax需要调用版本管理系统来支持的功能。而不同的版本管理系统需要分别实现对应的功能，以满足接口的要求。而对于版本管理系统的封装与版本管理系统管理模块是解耦合的，当需要使用其进行相应操作时，版本管理系统管理模块会根据用户的设定，先创建出操作对应的版本管理系统的对象，然后根据该对象进行操作。目前所有版本管理系统的实现是通过在go语言中调用Shell程序，来使用本地的版本管理系统的命令行工具来进行支持的。所以版本管理系统的封装本身是无状态的，因此重复创建并不会带来太大的开销。
@@ -175,7 +177,8 @@ integration:
 
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:nodetype]{指向一个表格的表目录索引}{语法树节点类型}{Table}{}
+  \caption{语法树节点类型}
+  \label{tab:nodetype}
   \begin{tabular}{ll} \toprule
     节点类型 & 描述 \\ \midrule
     NodeList & 根节点类型，用以构造多叉树 \\
@@ -193,7 +196,8 @@ integration:
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\textwidth]{detail/tree.png}
-  \bicaption[fig:tree]{Fornax执行树模型}{Fornax执行树模型}{Fig}{}
+  \caption{Fornax执行树模型}
+  \label{fig:tree}
 \end{figure}
 
 使用容器来执行各个阶段的任务，是出于资源隔离的考虑。容器本身具有轻量级，隔离性较好等特性，非常适合用来处理构建任务。构建任务需要在任务内所有的资源共享而构建任务之间应该具有良好地资源隔离性。为了实现这一要求，Fornax在网络，处理器，内存等的使用上都做了一些处理。首先从网络层面，为了保证构建内的所有容器可以相互交互而构建外的容器不可感知到其存在，Fornax使用了Docker的网络特性，为每一次构建都新建了一个Docker的网络。如图\ref{fig:tree}所示，在一次构建内，所有的容器都在一个为构建任务新建的Docker的网络中。在网络中，所有的容器都可以通过容器的名字或者定义的别名去对其他容器进行服务发现，这是由DNS的名字解析来实现的。而在同一个Docker Host中不允许有同名的容器，因此为了解决名字冲突问题，Fornax对需要暴露服务的容器会将其的名字以网络中的别名的形式出现，而对于容器名则进行一定的随机以保证不存在名字冲突。因此对于容器而言，其不感知自己名字而可以通过别名的方式让其他的容器与其进行交互。
@@ -237,7 +241,8 @@ Docker后台管理模块是在开发的后期被引入的一个模块，它会�
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.9\textwidth]{detail/log.png}
-  \bicaption[fig:log]{Fornax日志模块交互图}{Fornax日志模块交互图}{Fig}{}
+  \caption{Fornax日志模块交互图}
+  \label{fig:log}
 \end{figure}
 
 为了实现日志实时推送的功能，Fornax在其主线程之外还有一个监听其他端口的日志服务器线程，该服务器只负责有关日志获取的部分逻辑。它从Kafka中获取日志，并将其推送给订阅相关日志的客户端。客户端、Fornax主服务器线程、Fornax日志服务器线程与Kafka之间的交互如图\ref{log}所示，当客户端发起一次构建时，Fornax会先生成一个唯一的标识符代表这次构建产生的版本，而随后会由异步事件管理模块调度构建的运行。在运行时，构建产生的日志会由Fornax推送给Kafka，而指定的主题是由发起构建的用户唯一标识符，构建所在的服务的唯一标识符，和代表该次构建的唯一标识符拼接而成。所有在构建时的日志都会被推送至该主题中。
@@ -248,7 +253,8 @@ Docker后台管理模块是在开发的后期被引入的一个模块，它会�
 
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:protocol-client]{指向一个表格的表目录索引}{Fornax日志模块请求的数据包格式}{Table}{}
+  \caption{Fornax日志模块请求的数据包格式}
+  \label{tab:protocol-client}
   \begin{tabular}{ll} \toprule
     字段 & 说明 \\ \midrule
     action & 动作 \\
@@ -264,7 +270,8 @@ Docker后台管理模块是在开发的后期被引入的一个模块，它会�
 
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:protocol-server]{指向一个表格的表目录索引}{Fornax日志模块返回的数据包格式}{Table}{}
+  \caption{Fornax日志模块返回的数据包格式}
+  \label{tab:protocol-server}
   \begin{tabular}{ll} \toprule
     字段 & 说明 \\ \midrule
     action & 动作 \\

@@ -32,7 +32,8 @@ Docker是一个开源的容器虚拟化工具，它可以帮助开发者便捷�
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.4\textwidth]{tech/vm.png}
-  \bicaption[fig:vm]{传统虚拟化技术示意图}{传统虚拟化技术示意图}{Fig}{}
+  \caption{传统虚拟化技术示意图}
+  \label{fig:vm}
 \end{figure}
 
 容器虚拟化技术并不是一个最近才出现的新技术，而是在2000年左右就已经有不少应用的虚拟化手段。
@@ -50,7 +51,8 @@ Docker是目前被广泛接受的一种容器虚拟化工具，其有着其他�
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.4\textwidth]{tech/container.png}
-  \bicaption[fig:container]{Docker示意图}{Docker示意图}{Fig}{}
+  \caption{Docker示意图}
+  \label{fig:container}
 \end{figure}
 
 如图\ref{fig:container}所示，Docker不同于传统的虚拟化技术，每一个容器包含其运行时需要的所有依赖以及应用，但并不需要一个虚拟机来提供支持，每一个Docker容器只是一个运行在独立的namespace下的受到隔离的进程。与此同时，Docker容器不会跟下层的操作系统相耦合，它们可以运行在所有支持Docker Engine的机器或者云上。
@@ -64,7 +66,8 @@ Docker中比较重要的两个概念分别是镜像和容器，这是Docker最�
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth]{tech/architecture.png}
-  \bicaption[fig:architecture]{Docker架构图}{Docker架构图}{Fig}{}
+  \caption{Docker架构图}
+  \label{fig:architecture}
 \end{figure}
 
 如图\ref{fig:architecture}所示，Docker采取了客户端-服务器的架构。其中比较重要的组件有Docker Daemon，Docker Client，Docker Registry三个，下面将从镜像和容器的生命周期角度，对Docker的架构进行介绍。

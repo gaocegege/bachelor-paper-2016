@@ -16,12 +16,25 @@
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.55\textwidth]{test/test.png}
-  \bicaption[fig:test]{Fornax测试架构图}{Fornax测试架构图}{Fig}{}
+  \caption{Fornax测试架构图}
+  \label{fig:test}
 \end{figure}
 
-如图\ref{fig:test}，Fornax会将Kafka和Zookeeper以Docker容器的方式启动，将数据库启动在本地，除此之外，为了测试版本的推送功能，Fornax需要一个Docker Registry进行验证，而测试的应用场景对于Docker Registry有着不同于平时的需求，其要求Docker Registry的生命周期足够短，在测试结束时不能留下残余垃圾。因此使用公共的或者私有的Docker Registry都不能满足这样的要求，因此在Fornax启动之前，一个私有的Docker Registry会被启动，随之而存在的用以认证的一个服务也会随之启动。这两个服务也是以Docker容器的方式运行的。随后Fornax会被真正地运行，而测试代码是独立于Fornax实例而存在，其本质是模拟Fornax的客户端，对Fornax发起HTTP请求以测试Fornax在行为级别的表现是否满足预期，而针对Fornax的代码，有一些异常路径的测试用例被执行，因此属于端到端的测试，也可以被视为灰盒测试。
+如图\ref{fig:test}所示，Fornax会将Kafka和Zookeeper以Docker容器的方式启动，将数据库启动在本地，除此之外，为了测试版本的推送功能，Fornax需要一个Docker Registry进行验证，而测试的应用场景对于Docker Registry有着不同于平时的需求，其要求Docker Registry的生命周期足够短，在测试结束时不能留下残余垃圾。因此使用公共的或者私有的Docker Registry都不能满足这样的要求，因此在Fornax启动之前，一个私有的Docker Registry会被启动，随之而存在的用以认证的一个服务也会随之启动。这两个服务也是以Docker容器的方式运行的。随后Fornax会被真正地运行，而测试代码是独立于Fornax实例而存在，其本质是模拟Fornax的客户端，对Fornax发起HTTP请求以测试Fornax在行为级别的表现是否满足预期，而针对Fornax的代码，有一些异常路径的测试用例被执行，因此属于端到端的测试，也可以被视为灰盒测试。
 
-目前，Fornax中具有35个端到端的测试用例，覆盖了Fornax的全部的主要流程和部分异常流程。Fornax使用行为驱动的测试风格维护这些测试用例，使得在新增用例时代码不会过于膨胀。在35个测试用例中，有11个用例测试有关服务的逻辑，15个用例测试有关版本中构建与发布的逻辑，还有额外的9个用例专门关于给定配置文件后构建版本时的逻辑。因为在创建版本时版本镜像的构建与发布是默认的行为，因此相比于给定配置文件后进行构建的应用场景要更常见一些，所以书写了更多的测试用例。但从代码复杂度而言，给定配置文件后进行构建要比直接构建与发布镜像要复杂许多，因此在之后Fornax会补充更多完善的关于根据配置文件进行构建的测试用例。
+\begin{table}[!hpb]
+  \centering
+  \caption{Fornax功能性测试用例}
+  \label{tab:test}
+  \begin{tabular}{llll} \toprule
+     & 测试用例数目 & 主流程覆盖率 & 异常流程覆盖率 \\ \midrule
+     服务测试用例 & 11 & 100\% & 87\% \\
+     版本测试用例 & 15 &100\% & 65\% \\
+     持续集成测试用例 & 9 & 100\% & 67\% \\ \bottomrule
+  \end{tabular}
+\end{table}
+
+目前如表\ref{tab:test}所示，Fornax中具有35个端到端的测试用例，覆盖了Fornax的全部的主要流程和部分异常流程。Fornax使用行为驱动的测试风格维护这些测试用例，使得在新增用例时代码不会过于膨胀。在35个测试用例中，有11个用例测试有关服务的逻辑，15个用例测试有关版本中构建与发布的逻辑，还有额外的9个用例专门关于给定配置文件后构建版本时的逻辑。因为在创建版本时版本镜像的构建与发布是默认的行为，因此相比于给定配置文件后进行构建的应用场景要更常见一些，所以书写了更多的测试用例。但从代码复杂度而言，给定配置文件后进行构建要比直接构建与发布镜像要复杂许多，因此在之后Fornax会补充更多完善的关于根据配置文件进行构建的测试用例。
 
 \section{分布式部署}
 
@@ -30,7 +43,8 @@ Fornax作为一个生产环境可用的版本管理与发布的工具，支持�
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.55\textwidth]{test/distributed.png}
-  \bicaption[fig:distributed]{Fornax分布式部署}{Fornax分布式部署}{Fig}{}
+  \caption{Fornax分布式部署}
+  \label{fig:distributed}
 \end{figure}
 
 如图\ref{fig:distributed}所示，Fornax在分布式部署中使用到了HAProxy作为反向代理的工具。在结构上主要分为Fornax集群，Kafka集群和Mongo集群。Fornax集群中每个实例的关系是完全对等的，都是无状态的。而Mongo集群和Kafka集群是使用其默认的分布式部署的支持方式进行部署的，它们为多个Fornax的实例提供服务。每当有请求路由到HAProxy时，HAProxy会根据自身的负载均衡策略将请求分发至一个具体的Fornax实例，该实例收到由其路由过来的请求后，会对其进行处理，并将服务，版本等信息存储到数据库集群中，而有关日志的信息会存储到消息中间件集群中。
@@ -47,7 +61,8 @@ Fornax代码情况使用cloc\cite{cloc}统计，去除了Fornax中对于其他�
 
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:code]{指向一个表格的表目录索引}{Fornax代码统计}{Table}{}
+  \caption{Fornax代码统计}
+  \label{tab:code}
   \begin{tabular}{lllll} \toprule
     语言 & 文件数 & 注释 & 代码 \\ \midrule
     Go & 62 & 1129 & 6671 \\
@@ -71,7 +86,8 @@ Travis CI是另外一款开源的持续集成工具，主要使用Ruby语言实�
 
 \begin{table}[!hpb]
   \centering
-  \bicaption[tab:advantage]{指向一个表格的表目录索引}{Fornax与其他工具对比}{Table}{}
+  \caption{Fornax与其他工具对比}
+  \label{tab:advantage}
   \begin{tabular}{llllll} \toprule
      & 实现语言 & 持续集成 & 分布式 & 容器隔离 & 版本管理 \\ \midrule
     Jenkins & Java & 支持 & 支持 & 不支持 & 不支持 \\
