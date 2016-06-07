@@ -1,441 +1,441 @@
-% %# -*- coding: utf-8-unix -*-
-% %%==================================================
-% %% impl.tex for SJTU Master Thesis
-% %%==================================================
+%# -*- coding: utf-8-unix -*-
+%%==================================================
+%% impl.tex for SJTU Master Thesis
+%%==================================================
 
-% \chapter{Fornax功能性测试输出结果}
-% \label{chap:test-result}
+\chapter{Fornax功能性测试输出结果}
+\label{chap:test-result}
 
-% 测试日志如下所示。
+测试日志如下所示。
 
-% \begin{lstlisting}[caption={Fornax功能性测试日志}]
-% GitHub pull request #237 of commit 99d351b6a8c0c0e0f014bbfd0db09af42f57daf2, no merge conflicts.
-% Setting status of 99d351b6a8c0c0e0f014bbfd0db09af42f57daf2 to PENDING with url http://43.254.54.241:8080/ and message: 'Build started sha1 is merged.'
-% Using context: e2e-test
-% Building remotely on slave-anchnet-2 in workspace /home/ubuntu/jenkins/workspace/fornax
-%  > git rev-parse --is-inside-work-tree # timeout=10
-% Fetching changes from the remote Git repository
-%  > git config remote.origin.url https://github.com/caicloud/fornax.git # timeout=10
-% Fetching upstream changes from https://github.com/caicloud/fornax.git
-%  > git --version # timeout=10
-% using .gitcredentials to set credentials
-%  > git config --local credential.username caicloud-bot # timeout=10
-%  > git config --local credential.helper store --file=/tmp/git775915477012440165.credentials # timeout=10
-%  > git -c core.askpass=true fetch --tags --progress https://github.com/caicloud/fornax.git +refs/pull/*:refs/remotes/origin/pr/*
-%  > git config --local --remove-section credential # timeout=10
-%  > git rev-parse refs/remotes/origin/pr/237/merge^{commit} # timeout=10
-%  > git rev-parse refs/remotes/origin/origin/pr/237/merge^{commit} # timeout=10
-% Checking out Revision 5b1e1faadcf870910ae019482ab5330636447852 (refs/remotes/origin/pr/237/merge)
-%  > git config core.sparsecheckout # timeout=10
-%  > git checkout -f 5b1e1faadcf870910ae019482ab5330636447852
-% First time build. Skipping changelog.
-% [fornax] /bin/bash /tmp/hudson6251074946529632248.sh
-% [Sat Jun  4 20:38:59 CST 2016] The related service running in docker, the registry, mongo and fornax running in local.
-% Creating fornax\_zookeeper\_1
-% Creating fornax\_kafka\_1
-% Start registry
-% Start docker-auth
-% -> repositories cloned to: /tmp/fornax.Zz6jLZA7Wj/workdir
-% -> registry location: localhost:5000
-% -> registry data for auth log: /tmp/fornax.Zz6jLZA7Wj/auth-log
-% -> registry data for local registry: /tmp/fornax.Zz6jLZA7Wj/registry
-% -> registry username: admin
-% -> registry password: admin\_password
-% === RUN   TestService
-% Running Suite: Service Suite
-% ============================
-% Random Seed: 1465043956
-% Will run 11 of 11 specs
-% time="2016-06-04T20:39:16+08:00" level=info msg="Waiting for fornax to start, please wait. If things went wrong, this may loop forever" \_file\_="setup.go:122" 
-% time="2016-06-04T20:39:22+08:00" level=info msg="Env variant MONGO\_DB\_IP found, using env value: localhost:28017" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant ENABLE\_CAICLOUD\_AUTH found, using env value: false" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant DOCKER\_HOST\_DIR not found, using default value: " \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant UI\_SERVER\_PATH not found, using default value: http://127.0.0.1:3000" \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant MEMORYFORUSER not found, using default value: 1073741824" \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant CPUFORUSER not found, using default value: 1024" \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant MEMORYFORCONTAINER not found, using default value: 134217728" \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant CPUFORCONTAINER not found, using default value: 128" \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:23+08:00" level=warning msg="Unable to create daemon manager: dir is empty!" \_file\_="init.go:105" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="AsyncManager background processing started" \_file\_="manager.go:118" 
-% [restful] 2016/06/04 20:39:23 log.go:30: [restful/swagger] listing is available at http://localhost:7099/apidocs.json
-% [restful] 2016/06/04 20:39:23 log.go:30: [restful/swagger] http://localhost:7099/apidocs/ is mapped to folder ./node\_modules/swagger-ui/dist
-% time="2016-06-04T20:39:23+08:00" level=info msg="fornax server listening on 7099" \_file\_="main.go:155" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Env variant KAFKA\_SERVER\_IP found, using env value: localhost:9092" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:23+08:00" level=info msg="Start Websocket Server at Port:8000" \_file\_="server.go:18" 
-% time="2016-06-04T20:39:24+08:00" level=info msg="fornax started" \_file\_="setup.go:130" 
-% time="2016-06-04T20:39:24+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:24+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:24+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:24+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:24+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
-% •time="2016-06-04T20:39:24+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=listUID 
-% time="2016-06-04T20:39:24+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=listUID 
-% time="2016-06-04T20:39:24+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" url="https://github.com/caicloud/toy-dockerfile" 
-% •time="2016-06-04T20:39:27+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:27+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" 
-% time="2016-06-04T20:39:27+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" 
-% time="2016-06-04T20:39:27+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/logs/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" 
-% ••time="2016-06-04T20:39:28+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=aliceUID 
-% time="2016-06-04T20:39:28+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:39:28+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/914d2db0-4a18-484d-804d-02eedca74b7d" url=123456 
-% time="2016-06-04T20:39:28+08:00" level=error msg="Error when clone" \_file\_="git.go:34" error="exit status 128" 
-% time="2016-06-04T20:39:28+08:00" level=error msg="Operation failed" \_file\_="manager.go:134" event=&{914d2db0-4a18-484d-804d-02eedca74b7d create-service 0xc8201fb440 <nil> <nil> map[] 0x5237c0 0xc8201bb980 {false Unable to clone repository for service &api.Service{ServiceID:"914d2db0-4a18-484d-804d-02eedca74b7d", UserID:"aliceUID", Name:"test-basic-rest-service", Username:"alice", Description:"A service just for test", BuildPath:"", Versions:[]string(nil), Repository:api.ServiceRepository{URL:"123456", Vcs:"git", Status:"missing", Username:"", Password:""}, Jconfig:api.JenkinsConfig{Address:"", Username:"", Password:""}, LastVersionCreateTIme:time.Time{sec:0, nsec:0, loc:(*time.Location)(0x111d180)}, LastVersionName:""}: exit status 128
-%  false 0xc8201fc7e0} {1 0} <nil>} 
-% time="2016-06-04T20:39:28+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/914d2db0-4a18-484d-804d-02eedca74b7d" 
-% time="2016-06-04T20:39:28+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/914d2db0-4a18-484d-804d-02eedca74b7d" 
-% •time="2016-06-04T20:39:30+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=aliceUID 
-% time="2016-06-04T20:39:30+08:00" level=error msg="Unknown version control system gaocegege" \_file\_="manager.go:200" 
-% time="2016-06-04T20:39:30+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/237b543b-694e-4de3-b0a0-877cbb982bc9" 
-% time="2016-06-04T20:39:30+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/237b543b-694e-4de3-b0a0-877cbb982bc9" 
-% •time="2016-06-04T20:39:33+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=bobUID 
-% time="2016-06-04T20:39:33+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=bobUID 
-% time="2016-06-04T20:39:33+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" url="https://github.com/caicloud/toy-dockerfile" 
-% •time="2016-06-04T20:39:34+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=aliceUID 
-% time="2016-06-04T20:39:34+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:39:34+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" 
-% time="2016-06-04T20:39:36+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/logs/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" 
-% •time="2016-06-04T20:39:37+08:00" level=error msg="have no access to service e5d4416b-6e5e-40fc-a94b-8050f0bfb234" \_file\_="filter.go:112" user\_id=bobUID 
-% •time="2016-06-04T20:39:37+08:00" level=error msg="have no access to service e5d4416b-6e5e-40fc-a94b-8050f0bfb234" \_file\_="filter.go:112" user\_id=bobUID 
-% •time="2016-06-04T20:39:37+08:00" level=error msg="Unable to find service e5d4416b-6e5e-40fc-a94b-8050f0bfb234" \_file\_="filter.go:107" error="not found" user\_id=aliceUID 
-% •
-% Ran 11 of 11 Specs in 20.548 seconds
-% SUCCESS! -- 11 Passed | 0 Failed | 0 Pending | 0 Skipped --- PASS: TestService (20.55s)
-% PASS
-% ok  	github.com/caicloud/fornax/tests/service	20.620s
-% === RUN   TestVersion
-% Running Suite: Version Suite
-% ============================
-% Random Seed: 1465043984
-% Will run 20 of 20 specs
-% time="2016-06-04T20:39:44+08:00" level=info msg="Waiting for fornax to start, please wait. If things went wrong, this may loop forever" \_file\_="setup.go:122" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="fornax started" \_file\_="setup.go:130" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:39:45+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-version user\_id=aliceUID 
-% time="2016-06-04T20:39:45+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:39:45+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:48+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:48+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" 
-% time="2016-06-04T20:39:48+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" 
-% time="2016-06-04T20:39:48+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" 
-% time="2016-06-04T20:39:49+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-version user\_id=aliceUID 
-% time="2016-06-04T20:39:49+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:39:49+08:00" level=info msg="About to svn checkout repository." \_file\_="svn.go:20" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" url="https://github.com/caicloud/toy-dockerfile/trunk" 
-% time="2016-06-04T20:39:55+08:00" level=info msg="Successfully svn checkout repository." \_file\_="svn.go:29" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" url="https://github.com/caicloud/toy-dockerfile/trunk" 
-% time="2016-06-04T20:39:55+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" 
-% time="2016-06-04T20:39:55+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" 
-% time="2016-06-04T20:39:55+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/50383984-ab3e-4946-b087-eafc3d23645b" 
-% time="2016-06-04T20:39:55+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
-% time="2016-06-04T20:39:55+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:39:55+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" url="https://github.com/caicloud/toy-dockerfile" 
-% •time="2016-06-04T20:39:58+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:39:58+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:55" 
-% time="2016-06-04T20:39:58+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag=v0.1.0 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:40:03+08:00" level=error msg="Unable to get tag commit" \_file\_="operations.go:299" commit= err="exit status 128" version=&{c9cb3341-e9b6-45c1-93f2-9f74534995a7 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [latest] []  2016-06-04 20:39:55.855022706 +0800 CST  healthy  } 
-% time="2016-06-04T20:40:03+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/c9cb3341-e9b6-45c1-93f2-9f74534995a7" 
-% time="2016-06-04T20:40:03+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=c9cb3341-e9b6-45c1-93f2-9f74534995a7 
-% ------------------------------
-% • [SLOW TEST:9.003 seconds]
-% Version
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
-%   with right service id
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:206
-%     with right version information
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:197
-%       should be able to get version via HTTP GET method.
-%       /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:156
-% ------------------------------
-% •time="2016-06-04T20:40:05+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% •time="2016-06-04T20:40:05+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
-% time="2016-06-04T20:40:05+08:00" level=info msg="set topic create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 true" \_file\_="ws\_session.go:86" 
-% time="2016-06-04T20:40:05+08:00" level=info msg="start push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:124" 
-% time="2016-06-04T20:40:16+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
-% time="2016-06-04T20:40:16+08:00" level=info msg="set topic create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 false" \_file\_="ws\_session.go:86" 
-% ------------------------------
-% • [SLOW TEST:11.772 seconds]
-% Version
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
-%   with right service id
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:206
-%     with right version information
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:197
-%       should push the log
-%       /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:178
-% ------------------------------
-% ••time="2016-06-04T20:40:16+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
-% time="2016-06-04T20:40:16+08:00" level=info msg="set topic create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_\_1 true" \_file\_="ws\_session.go:86" 
-% time="2016-06-04T20:40:16+08:00" level=info msg="start push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_\_1 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:124" 
-% time="2016-06-04T20:40:17+08:00" level=info msg="stop push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:162" 
-% •time="2016-06-04T20:40:19+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ -1 v0.1.0 A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
-% time="2016-06-04T20:40:19+08:00" level=error msg="Unable to find service -1" \_file\_="version.go:63" error="not found" user\_id=aliceUID 
-% •time="2016-06-04T20:40:19+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
-% time="2016-06-04T20:40:19+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:40:19+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" url="https://github.com/caicloud/toy-dockerfile" 
-% •time="2016-06-04T20:40:22+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" url="https://github.com/caicloud/toy-dockerfile" 
-% time="2016-06-04T20:40:22+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:55" 
-% time="2016-06-04T20:40:22+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag=v0.1.0 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:40:26+08:00" level=error msg="Unable to get tag commit" \_file\_="operations.go:299" commit= err="exit status 128" version=&{4d1ddff9-e571-49ce-bb68-afbf94c5e4b1 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [latest] []  2016-06-04 20:40:19.841414039 +0800 CST  healthy  } 
-% time="2016-06-04T20:40:26+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" 
-% time="2016-06-04T20:40:26+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=4d1ddff9-e571-49ce-bb68-afbf94c5e4b1 
-% time="2016-06-04T20:40:29+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% ------------------------------
-% • [SLOW TEST:9.094 seconds]
-% Version
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
-%   with different user ID
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:284
-%     should build a docker image.
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:267
-% ------------------------------
-% time="2016-06-04T20:40:29+08:00" level=error msg="have no access to version 4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" \_file\_="filter.go:137" user\_id=bobUID 
-% •time="2016-06-04T20:40:29+08:00" level=error msg="have no access to service 0bdcf049-36cb-4d2d-ae4a-70134c0788e8" \_file\_="filter.go:112" user\_id=bobUID 
-% •time="2016-06-04T20:40:29+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
-% time="2016-06-04T20:40:29+08:00" level=info msg="set topic create\_version\_\_bobUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_4d1ddff9\_e571\_49ce\_bb68\_afbf94c5e4b1 true" \_file\_="ws\_session.go:86" 
-% time="2016-06-04T20:40:29+08:00" level=info msg="start push create\_version\_\_bobUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_4d1ddff9\_e571\_49ce\_bb68\_afbf94c5e4b1 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:124" 
-% •time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find service 0bdcf049-36cb-4d2d-ae4a-70134c0788e8" \_file\_="filter.go:107" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version c9cb3341-e9b6-45c1-93f2-9f74534995a7" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version 4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version c9cb3341-e9b6-45c1-93f2-9f74534995a7" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version 4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
-% •time="2016-06-04T20:40:32+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 50383984-ab3e-4946-b087-eafc3d23645b v0.1.0\_svn A version just for svn test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
-% time="2016-06-04T20:40:32+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:40:32+08:00" level=info msg="About to svn checkout repository." \_file\_="svn.go:20" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" url="https://github.com/caicloud/toy-dockerfile/trunk" 
-% •time="2016-06-04T20:40:37+08:00" level=info msg="Successfully svn checkout repository." \_file\_="svn.go:29" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" url="https://github.com/caicloud/toy-dockerfile/trunk" 
-% time="2016-06-04T20:40:37+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:55" 
-% time="2016-06-04T20:40:37+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag="v0.1.0\_svn" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="failed checked out to svn tag." \_file\_="svn.go:76" repoPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" tag="v0.1.0\_svn" 
-% time="2016-06-04T20:40:41+08:00" level=error msg="Unable to get tag commit" \_file\_="operations.go:299" commit= err="chdir /tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7/tags: no such file or directory" version=&{b13e4ffa-55ea-4c32-898a-2eb7f5d263e7 50383984-ab3e-4946-b087-eafc3d23645b v0.1.0\_svn A version just for svn test [] [latest] []  2016-06-04 20:40:32.060096079 +0800 CST  healthy  } 
-% time="2016-06-04T20:40:41+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" 
-% time="2016-06-04T20:40:41+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=b13e4ffa-55ea-4c32-898a-2eb7f5d263e7 
-% ------------------------------
-% • [SLOW TEST:12.002 seconds]
-% Version
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
-%   test svn vcs
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:373
-%     should be able to get version via HTTP GET method.
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:349
-% ------------------------------
-% •time="2016-06-04T20:40:44+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
-% ••
-% Ran 20 of 20 Specs in 59.612 seconds
-% SUCCESS! -- 20 Passed | 0 Failed | 0 Pending | 0 Skipped --- PASS: TestVersion (59.61s)
-% PASS
-% time="2016-06-04T20:40:44+08:00" level=error msg=EOF \_file\_="server.go:59" 
-% ok  	github.com/caicloud/fornax/tests/version	59.645s
-% time="2016-06-04T20:40:44+08:00" level=info msg="stop push create\_version\_\_bobUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_4d1ddff9\_e571\_49ce\_bb68\_afbf94c5e4b1 to " \_file\_="application.go:162" 
-% time="2016-06-04T20:40:44+08:00" level=info msg="stop push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_\_1 to " \_file\_="application.go:162" 
-% === RUN   TestYaml
-% Running Suite: Yaml Suite
-% =========================
-% Random Seed: 1465044051
-% Will run 8 of 8 specs
-% time="2016-06-04T20:40:51+08:00" level=info msg="Waiting for fornax to start, please wait. If things went wrong, this may loop forever" \_file\_="setup.go:122" 
-% time="2016-06-04T20:40:52+08:00" level=info msg="fornax started" \_file\_="setup.go:130" 
-% time="2016-06-04T20:40:52+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:40:52+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
-% time="2016-06-04T20:40:52+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:40:52+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:40:52+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
-% time="2016-06-04T20:41:15+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-version user\_id=aliceUID 
-% time="2016-06-04T20:41:15+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:41:15+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" url="./tests/fake\_repo\_for\_test/Integration" 
-% time="2016-06-04T20:41:15+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" url="./tests/fake\_repo\_for\_test/Integration" 
-% time="2016-06-04T20:41:15+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" 
-% time="2016-06-04T20:41:15+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" 
-% time="2016-06-04T20:41:15+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/97858e8f-b5bd-40e1-a025-ac67057107e0" 
-% time="2016-06-04T20:41:18+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-deploy-service user\_id=aliceUID 
-% time="2016-06-04T20:41:18+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:41:18+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" url="./tests/fake\_repo\_for\_test/deploy" 
-% time="2016-06-04T20:41:18+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" url="./tests/fake\_repo\_for\_test/deploy" 
-% time="2016-06-04T20:41:18+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" 
-% time="2016-06-04T20:41:18+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" 
-% time="2016-06-04T20:41:18+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/09fb9eb9-646d-46b4-97b7-c6cf1862b301" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 97858e8f-b5bd-40e1-a025-ac67057107e0 v0.1.0 A version just for Integration test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
-% time="2016-06-04T20:41:21+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:41:21+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" url="./tests/fake\_repo\_for\_test/Integration" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" url="./tests/fake\_repo\_for\_test/Integration" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="the maximum number is 2\n" \_file\_="parser.go:99" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 805306368 cpu  768 numberContainers 2\n" \_file\_="resource.go:55" 
-% •time="2016-06-04T20:41:21+08:00" level=info msg="About to run integration event." \_file\_="manager.go:57" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:21+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={mongo 0xc8201341c0 0xc82014a000} 
-% time="2016-06-04T20:41:22+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={mongo 0xc8201341c0 0xc82014a000} 
-% time="2016-06-04T20:41:22+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:22+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:22+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:22+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={ 0xc820134380 0xc82014b180} 
-% time="2016-06-04T20:41:22+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={ 0xc820134380 0xc82014b180} 
-% time="2016-06-04T20:41:32+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="About to run prebuild event." \_file\_="manager.go:73" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={ 0xc8201348c0 0xc82014b500} 
-% time="2016-06-04T20:41:32+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={ 0xc8201348c0 0xc82014b500} 
-% time="2016-06-04T20:41:32+08:00" level=info msg="copy file(/root/newfile) to /tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad/\n" \_file\_="docker.go:330" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="docker copy file finished" \_file\_="docker.go:361" 
-% time="2016-06-04T20:41:32+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag=v0.1.0 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="About to run post build event." \_file\_="manager.go:84" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="remove docker image failed." \_file\_="operations.go:93" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="remove docker image failed." \_file\_="operations.go:93" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" 
-% time="2016-06-04T20:41:36+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=a600d5f3-88c2-4d1e-95da-6004b08aa1ad 
-% ------------------------------
-% • [SLOW TEST:16.003 seconds]
-% Yaml
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:243
-%   with right version information
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:242
-%     with the default operation
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:152
-%       should be able to get version via HTTP GET method.
-%       /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:151
-% ------------------------------
-% time="2016-06-04T20:41:37+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 97858e8f-b5bd-40e1-a025-ac67057107e0 v0.1.0-integration A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC   integration } 
-% time="2016-06-04T20:41:37+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:41:37+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" url="./tests/fake\_repo\_for\_test/Integration" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" url="./tests/fake\_repo\_for\_test/Integration" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="the maximum number is 2\n" \_file\_="parser.go:99" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 805306368 cpu  768 numberContainers 2\n" \_file\_="resource.go:55" 
-% •time="2016-06-04T20:41:37+08:00" level=info msg="About to run integration event." \_file\_="manager.go:57" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:37+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={mongo 0xc820135500 0xc820408380} 
-% time="2016-06-04T20:41:38+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={mongo 0xc820135500 0xc820408380} 
-% time="2016-06-04T20:41:38+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:38+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:38+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:38+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={ 0xc820135a40 0xc820408700} 
-% time="2016-06-04T20:41:38+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={ 0xc820135a40 0xc820408700} 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image="localhost:5000/mongo:3.0.5" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" 
-% time="2016-06-04T20:41:48+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf 
-% ------------------------------
-% • [SLOW TEST:12.003 seconds]
-% Yaml
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:243
-%   with right version information
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:242
-%     with the integration operation
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:194
-%       should be able to get version via HTTP GET method.
-%       /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:188
-% ------------------------------
-% •time="2016-06-04T20:41:49+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 09fb9eb9-646d-46b4-97b7-c6cf1862b301 v0.1.0-deploy A version just for test deploy [] [] []  0001-01-01 00:00:00 +0000 UTC   publish } 
-% time="2016-06-04T20:41:49+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
-% time="2016-06-04T20:41:49+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" url="./tests/fake\_repo\_for\_test/deploy" 
-% time="2016-06-04T20:41:49+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" url="./tests/fake\_repo\_for\_test/deploy" 
-% time="2016-06-04T20:41:49+08:00" level=info msg="the maximum number is 0\n" \_file\_="parser.go:99" 
-% time="2016-06-04T20:41:49+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 1073741824 cpu  1024 numberContainers 0\n" \_file\_="resource.go:55" 
-% time="2016-06-04T20:41:50+08:00" level=info msg="About to run prebuild event." \_file\_="manager.go:73" 
-% time="2016-06-04T20:41:50+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-deploy-service:v0.1.0-deploy" 
-% •time="2016-06-04T20:41:53+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-deploy-service:v0.1.0-deploy" 
-% time="2016-06-04T20:41:53+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-deploy-service" tag=v0.1.0-deploy 
-% time="2016-06-04T20:41:54+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-deploy-service" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-deploy-service:v0.1.0-deploy" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="About to run post build event." \_file\_="manager.go:84" 
-% time="2016-06-04T20:41:54+08:00" level=error msg="Failed to deploy version" \_file\_="operations.go:162" err="Post http://127.0.0.1:3000/api/application/updateImage: malformed HTTP response \"\\x15\\x03\\x01\\x00\\x02\\x02\\x16\"" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
-% time="2016-06-04T20:41:54+08:00" level=error msg="Operation failed" \_file\_="manager.go:134" event=&{05672924-024b-403f-a007-4cf4bb3b2948 create-version 0xc820260120 0xc8204ec690 0xc8204a4c00 map[service-name:test-deploy-service version-name:v0.1.0-deploy username:alice context-dir:/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948] 0x523be0 0xc82052be80 {false Post http://127.0.0.1:3000/api/application/updateImage: malformed HTTP response "\x15\x03\x01\x00\x02\x02\x16" false 0xc8204a4c60} {1 0} <nil>} 
-% time="2016-06-04T20:41:54+08:00" level=info msg="no container can release resource\n" \_file\_="resource.go:61" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/05672924-024b-403f-a007-4cf4bb3b2948" 
-% time="2016-06-04T20:41:54+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=05672924-024b-403f-a007-4cf4bb3b2948 
-% time="2016-06-04T20:41:56+08:00" level=info msg="Error Message: Post http://127.0.0.1:3000/api/application/updateImage: malformed HTTP response \"\\x15\\x03\\x01\\x00\\x02\\x02\\x16\"\n" \_file\_="yaml\_test.go:226" 
-% ------------------------------
-% • [SLOW TEST:6.003 seconds]
-% Yaml
-% /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:243
-%   with right version information
-%   /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:242
-%     with the deploy operation
-%     /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:240
-%       should be  able to get version via HTTP GET method.
-%       /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:228
-% ------------------------------
-% •
-% Ran 8 of 8 Specs in 66.912 seconds
-% SUCCESS! -- 8 Passed | 0 Failed | 0 Pending | 0 Skipped --- PASS: TestYaml (66.91s)
-% PASS
-% ok  	github.com/caicloud/fornax/tests/yaml	66.945s
-% Stopping fornax\_kafka\_1 ... 
-% Stopping fornax\_zookeeper\_1 ... 
-% ./tests/../scripts/local-up.sh: line 23: 15270 Aborted                 (core dumped) mongod -dbpath {TMPDIR}/db" --port 28017 >{MONGO\_LOG} 2>&1
-% Stopping fornax\_kafka\_1 ... done
-% Stopping fornax\_zookeeper\_1 ... done
-% ./tests/run-e2e.sh: line 52: 15244 Terminated              DOCKER\_HOST{DOCKER\_HOST:-"unix:///var/run/docker.sock"} ENABLE\_CAICLOUD\_AUTH="false" REGISTRY\_LOCATION="localhost:5000" REGISTRY\_USERNAME="admin" REGISTRY\_PASSWORD="admin\_password" KAFKA\_SERVER\_IP="localhost:9092" {FORNAX\_ROOT}"/scripts/local-up.sh @"
-% Not including one-off containers created by `docker-compose run`.
-% To include them, use `docker-compose rm --all`.
-% This will be the default behavior in the next version of Compose.
-% Removing fornax\_kafka\_1 ... 
-% Removing fornax\_zookeeper\_1 ... 
-% Removing fornax\_kafka\_1 ... done
-% Removing fornax\_zookeeper\_1 ... done
-% Going to remove fornax\_kafka\_1, fornax\_zookeeper\_1
-% [Sat Jun  4 20:42:19 CST 2016] e2e test cleanup complete
-% Started calculate disk usage of build
-% Finished Calculation of disk usage of build in 0 seconds
-% Started calculate disk usage of workspace
-% Finished Calculation of disk usage of workspace in 0 seconds
-% Setting status of 99d351b6a8c0c0e0f014bbfd0db09af42f57daf2 to SUCCESS with url http://43.254.54.241:8080/ and message: 'Build finished. No test results found.'
-% Using context: e2e-test
-% Finished: SUCCESS
-% \end{lstlisting}
+\begin{lstlisting}[caption={Fornax功能性测试日志}]
+GitHub pull request #237 of commit 99d351b6a8c0c0e0f014bbfd0db09af42f57daf2, no merge conflicts.
+Setting status of 99d351b6a8c0c0e0f014bbfd0db09af42f57daf2 to PENDING with url http://43.254.54.241:8080/ and message: 'Build started sha1 is merged.'
+Using context: e2e-test
+Building remotely on slave-anchnet-2 in workspace /home/ubuntu/jenkins/workspace/fornax
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/caicloud/fornax.git # timeout=10
+Fetching upstream changes from https://github.com/caicloud/fornax.git
+ > git --version # timeout=10
+using .gitcredentials to set credentials
+ > git config --local credential.username caicloud-bot # timeout=10
+ > git config --local credential.helper store --file=/tmp/git775915477012440165.credentials # timeout=10
+ > git -c core.askpass=true fetch --tags --progress https://github.com/caicloud/fornax.git +refs/pull/*:refs/remotes/origin/pr/*
+ > git config --local --remove-section credential # timeout=10
+ > git rev-parse refs/remotes/origin/pr/237/merge^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/pr/237/merge^{commit} # timeout=10
+Checking out Revision 5b1e1faadcf870910ae019482ab5330636447852 (refs/remotes/origin/pr/237/merge)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5b1e1faadcf870910ae019482ab5330636447852
+First time build. Skipping changelog.
+[fornax] /bin/bash /tmp/hudson6251074946529632248.sh
+[Sat Jun  4 20:38:59 CST 2016] The related service running in docker, the registry, mongo and fornax running in local.
+Creating fornax\_zookeeper\_1
+Creating fornax\_kafka\_1
+Start registry
+Start docker-auth
+-> repositories cloned to: /tmp/fornax.Zz6jLZA7Wj/workdir
+-> registry location: localhost:5000
+-> registry data for auth log: /tmp/fornax.Zz6jLZA7Wj/auth-log
+-> registry data for local registry: /tmp/fornax.Zz6jLZA7Wj/registry
+-> registry username: admin
+-> registry password: admin\_password
+=== RUN   TestService
+Running Suite: Service Suite
+============================
+Random Seed: 1465043956
+Will run 11 of 11 specs
+time="2016-06-04T20:39:16+08:00" level=info msg="Waiting for fornax to start, please wait. If things went wrong, this may loop forever" \_file\_="setup.go:122" 
+time="2016-06-04T20:39:22+08:00" level=info msg="Env variant MONGO\_DB\_IP found, using env value: localhost:28017" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant ENABLE\_CAICLOUD\_AUTH found, using env value: false" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant DOCKER\_HOST\_DIR not found, using default value: " \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant UI\_SERVER\_PATH not found, using default value: http://127.0.0.1:3000" \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant MEMORYFORUSER not found, using default value: 1073741824" \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant CPUFORUSER not found, using default value: 1024" \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant MEMORYFORCONTAINER not found, using default value: 134217728" \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant CPUFORCONTAINER not found, using default value: 128" \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:23+08:00" level=warning msg="Unable to create daemon manager: dir is empty!" \_file\_="init.go:105" 
+time="2016-06-04T20:39:23+08:00" level=info msg="AsyncManager background processing started" \_file\_="manager.go:118" 
+[restful] 2016/06/04 20:39:23 log.go:30: [restful/swagger] listing is available at http://localhost:7099/apidocs.json
+[restful] 2016/06/04 20:39:23 log.go:30: [restful/swagger] http://localhost:7099/apidocs/ is mapped to folder ./node\_modules/swagger-ui/dist
+time="2016-06-04T20:39:23+08:00" level=info msg="fornax server listening on 7099" \_file\_="main.go:155" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Env variant KAFKA\_SERVER\_IP found, using env value: localhost:9092" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:23+08:00" level=info msg="Start Websocket Server at Port:8000" \_file\_="server.go:18" 
+time="2016-06-04T20:39:24+08:00" level=info msg="fornax started" \_file\_="setup.go:130" 
+time="2016-06-04T20:39:24+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:24+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:24+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:24+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:24+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
+•time="2016-06-04T20:39:24+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=listUID 
+time="2016-06-04T20:39:24+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=listUID 
+time="2016-06-04T20:39:24+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" url="https://github.com/caicloud/toy-dockerfile" 
+•time="2016-06-04T20:39:27+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:27+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" 
+time="2016-06-04T20:39:27+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" 
+time="2016-06-04T20:39:27+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/listUID/logs/bda3b9a4-baab-49ad-bd9a-70f37b34f61b" 
+••time="2016-06-04T20:39:28+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=aliceUID 
+time="2016-06-04T20:39:28+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:39:28+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/914d2db0-4a18-484d-804d-02eedca74b7d" url=123456 
+time="2016-06-04T20:39:28+08:00" level=error msg="Error when clone" \_file\_="git.go:34" error="exit status 128" 
+time="2016-06-04T20:39:28+08:00" level=error msg="Operation failed" \_file\_="manager.go:134" event=&{914d2db0-4a18-484d-804d-02eedca74b7d create-service 0xc8201fb440 <nil> <nil> map[] 0x5237c0 0xc8201bb980 {false Unable to clone repository for service &api.Service{ServiceID:"914d2db0-4a18-484d-804d-02eedca74b7d", UserID:"aliceUID", Name:"test-basic-rest-service", Username:"alice", Description:"A service just for test", BuildPath:"", Versions:[]string(nil), Repository:api.ServiceRepository{URL:"123456", Vcs:"git", Status:"missing", Username:"", Password:""}, Jconfig:api.JenkinsConfig{Address:"", Username:"", Password:""}, LastVersionCreateTIme:time.Time{sec:0, nsec:0, loc:(*time.Location)(0x111d180)}, LastVersionName:""}: exit status 128
+ false 0xc8201fc7e0} {1 0} <nil>} 
+time="2016-06-04T20:39:28+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/914d2db0-4a18-484d-804d-02eedca74b7d" 
+time="2016-06-04T20:39:28+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/914d2db0-4a18-484d-804d-02eedca74b7d" 
+•time="2016-06-04T20:39:30+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=aliceUID 
+time="2016-06-04T20:39:30+08:00" level=error msg="Unknown version control system gaocegege" \_file\_="manager.go:200" 
+time="2016-06-04T20:39:30+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/237b543b-694e-4de3-b0a0-877cbb982bc9" 
+time="2016-06-04T20:39:30+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/237b543b-694e-4de3-b0a0-877cbb982bc9" 
+•time="2016-06-04T20:39:33+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=bobUID 
+time="2016-06-04T20:39:33+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=bobUID 
+time="2016-06-04T20:39:33+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" url="https://github.com/caicloud/toy-dockerfile" 
+•time="2016-06-04T20:39:34+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-service user\_id=aliceUID 
+time="2016-06-04T20:39:34+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:39:34+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:36+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:36+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" 
+time="2016-06-04T20:39:36+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" 
+time="2016-06-04T20:39:36+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/e5d4416b-6e5e-40fc-a94b-8050f0bfb234" 
+time="2016-06-04T20:39:36+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:36+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" 
+time="2016-06-04T20:39:36+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" 
+time="2016-06-04T20:39:36+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/bobUID/logs/c7e3c3bc-26f5-4aba-be9b-3cb1bb868656" 
+•time="2016-06-04T20:39:37+08:00" level=error msg="have no access to service e5d4416b-6e5e-40fc-a94b-8050f0bfb234" \_file\_="filter.go:112" user\_id=bobUID 
+•time="2016-06-04T20:39:37+08:00" level=error msg="have no access to service e5d4416b-6e5e-40fc-a94b-8050f0bfb234" \_file\_="filter.go:112" user\_id=bobUID 
+•time="2016-06-04T20:39:37+08:00" level=error msg="Unable to find service e5d4416b-6e5e-40fc-a94b-8050f0bfb234" \_file\_="filter.go:107" error="not found" user\_id=aliceUID 
+•
+Ran 11 of 11 Specs in 20.548 seconds
+SUCCESS! -- 11 Passed | 0 Failed | 0 Pending | 0 Skipped --- PASS: TestService (20.55s)
+PASS
+ok  	github.com/caicloud/fornax/tests/service	20.620s
+=== RUN   TestVersion
+Running Suite: Version Suite
+============================
+Random Seed: 1465043984
+Will run 20 of 20 specs
+time="2016-06-04T20:39:44+08:00" level=info msg="Waiting for fornax to start, please wait. If things went wrong, this may loop forever" \_file\_="setup.go:122" 
+time="2016-06-04T20:39:45+08:00" level=info msg="fornax started" \_file\_="setup.go:130" 
+time="2016-06-04T20:39:45+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:45+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
+time="2016-06-04T20:39:45+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:45+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:45+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
+time="2016-06-04T20:39:45+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-version user\_id=aliceUID 
+time="2016-06-04T20:39:45+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:39:45+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:48+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:48+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" 
+time="2016-06-04T20:39:48+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" 
+time="2016-06-04T20:39:48+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/0bdcf049-36cb-4d2d-ae4a-70134c0788e8" 
+time="2016-06-04T20:39:49+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-version user\_id=aliceUID 
+time="2016-06-04T20:39:49+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:39:49+08:00" level=info msg="About to svn checkout repository." \_file\_="svn.go:20" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" url="https://github.com/caicloud/toy-dockerfile/trunk" 
+time="2016-06-04T20:39:55+08:00" level=info msg="Successfully svn checkout repository." \_file\_="svn.go:29" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" url="https://github.com/caicloud/toy-dockerfile/trunk" 
+time="2016-06-04T20:39:55+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" 
+time="2016-06-04T20:39:55+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/50383984-ab3e-4946-b087-eafc3d23645b" 
+time="2016-06-04T20:39:55+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/50383984-ab3e-4946-b087-eafc3d23645b" 
+time="2016-06-04T20:39:55+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
+time="2016-06-04T20:39:55+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:39:55+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" url="https://github.com/caicloud/toy-dockerfile" 
+•time="2016-06-04T20:39:58+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:39:58+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:55" 
+time="2016-06-04T20:39:58+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:40:03+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:40:03+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag=v0.1.0 
+time="2016-06-04T20:40:03+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
+time="2016-06-04T20:40:03+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:40:03+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
+time="2016-06-04T20:40:03+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:40:03+08:00" level=error msg="Unable to get tag commit" \_file\_="operations.go:299" commit= err="exit status 128" version=&{c9cb3341-e9b6-45c1-93f2-9f74534995a7 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [latest] []  2016-06-04 20:39:55.855022706 +0800 CST  healthy  } 
+time="2016-06-04T20:40:03+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" 
+time="2016-06-04T20:40:03+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/c9cb3341-e9b6-45c1-93f2-9f74534995a7" 
+time="2016-06-04T20:40:03+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/c9cb3341-e9b6-45c1-93f2-9f74534995a7" 
+time="2016-06-04T20:40:03+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=c9cb3341-e9b6-45c1-93f2-9f74534995a7 
+------------------------------
+• [SLOW TEST:9.003 seconds]
+Version
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
+  with right service id
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:206
+    with right version information
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:197
+      should be able to get version via HTTP GET method.
+      /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:156
+------------------------------
+•time="2016-06-04T20:40:05+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+•time="2016-06-04T20:40:05+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
+time="2016-06-04T20:40:05+08:00" level=info msg="set topic create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 true" \_file\_="ws\_session.go:86" 
+time="2016-06-04T20:40:05+08:00" level=info msg="start push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:124" 
+time="2016-06-04T20:40:16+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
+time="2016-06-04T20:40:16+08:00" level=info msg="set topic create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 false" \_file\_="ws\_session.go:86" 
+------------------------------
+• [SLOW TEST:11.772 seconds]
+Version
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
+  with right service id
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:206
+    with right version information
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:197
+      should push the log
+      /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:178
+------------------------------
+••time="2016-06-04T20:40:16+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
+time="2016-06-04T20:40:16+08:00" level=info msg="set topic create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_\_1 true" \_file\_="ws\_session.go:86" 
+time="2016-06-04T20:40:16+08:00" level=info msg="start push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_\_1 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:124" 
+time="2016-06-04T20:40:17+08:00" level=info msg="stop push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_c9cb3341\_e9b6\_45c1\_93f2\_9f74534995a7 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:162" 
+•time="2016-06-04T20:40:19+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ -1 v0.1.0 A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
+time="2016-06-04T20:40:19+08:00" level=error msg="Unable to find service -1" \_file\_="version.go:63" error="not found" user\_id=aliceUID 
+•time="2016-06-04T20:40:19+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
+time="2016-06-04T20:40:19+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:40:19+08:00" level=info msg="About to clone git repository." \_file\_="git.go:24" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" url="https://github.com/caicloud/toy-dockerfile" 
+•time="2016-06-04T20:40:22+08:00" level=info msg="Successfully cloned git repository." \_file\_="git.go:36" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" url="https://github.com/caicloud/toy-dockerfile" 
+time="2016-06-04T20:40:22+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:55" 
+time="2016-06-04T20:40:22+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:40:26+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:40:26+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag=v0.1.0 
+time="2016-06-04T20:40:26+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
+time="2016-06-04T20:40:26+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:40:26+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
+time="2016-06-04T20:40:26+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:40:26+08:00" level=error msg="Unable to get tag commit" \_file\_="operations.go:299" commit= err="exit status 128" version=&{4d1ddff9-e571-49ce-bb68-afbf94c5e4b1 0bdcf049-36cb-4d2d-ae4a-70134c0788e8 v0.1.0 A version just for test [] [latest] []  2016-06-04 20:40:19.841414039 +0800 CST  healthy  } 
+time="2016-06-04T20:40:26+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" 
+time="2016-06-04T20:40:26+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" 
+time="2016-06-04T20:40:26+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" 
+time="2016-06-04T20:40:26+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=4d1ddff9-e571-49ce-bb68-afbf94c5e4b1 
+time="2016-06-04T20:40:29+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+------------------------------
+• [SLOW TEST:9.094 seconds]
+Version
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
+  with different user ID
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:284
+    should build a docker image.
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:267
+------------------------------
+time="2016-06-04T20:40:29+08:00" level=error msg="have no access to version 4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" \_file\_="filter.go:137" user\_id=bobUID 
+•time="2016-06-04T20:40:29+08:00" level=error msg="have no access to service 0bdcf049-36cb-4d2d-ae4a-70134c0788e8" \_file\_="filter.go:112" user\_id=bobUID 
+•time="2016-06-04T20:40:29+08:00" level=info msg="receive watch\_log packet" \_file\_="application.go:70" 
+time="2016-06-04T20:40:29+08:00" level=info msg="set topic create\_version\_\_bobUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_4d1ddff9\_e571\_49ce\_bb68\_afbf94c5e4b1 true" \_file\_="ws\_session.go:86" 
+time="2016-06-04T20:40:29+08:00" level=info msg="start push create\_version\_\_bobUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_4d1ddff9\_e571\_49ce\_bb68\_afbf94c5e4b1 to d298823d-5924-4c9c-8df8-e2fa12e87e56" \_file\_="application.go:124" 
+•time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find service 0bdcf049-36cb-4d2d-ae4a-70134c0788e8" \_file\_="filter.go:107" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version c9cb3341-e9b6-45c1-93f2-9f74534995a7" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version 4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version c9cb3341-e9b6-45c1-93f2-9f74534995a7" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:40:32+08:00" level=error msg="Unable to find version 4d1ddff9-e571-49ce-bb68-afbf94c5e4b1" \_file\_="filter.go:132" error="not found" user\_id=aliceUID 
+•time="2016-06-04T20:40:32+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 50383984-ab3e-4946-b087-eafc3d23645b v0.1.0\_svn A version just for svn test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
+time="2016-06-04T20:40:32+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:40:32+08:00" level=info msg="About to svn checkout repository." \_file\_="svn.go:20" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" url="https://github.com/caicloud/toy-dockerfile/trunk" 
+•time="2016-06-04T20:40:37+08:00" level=info msg="Successfully svn checkout repository." \_file\_="svn.go:29" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" url="https://github.com/caicloud/toy-dockerfile/trunk" 
+time="2016-06-04T20:40:37+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:55" 
+time="2016-06-04T20:40:37+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
+time="2016-06-04T20:40:41+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag="v0.1.0\_svn" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
+time="2016-06-04T20:40:41+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:40:41+08:00" level=info msg="failed checked out to svn tag." \_file\_="svn.go:76" repoPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" tag="v0.1.0\_svn" 
+time="2016-06-04T20:40:41+08:00" level=error msg="Unable to get tag commit" \_file\_="operations.go:299" commit= err="chdir /tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7/tags: no such file or directory" version=&{b13e4ffa-55ea-4c32-898a-2eb7f5d263e7 50383984-ab3e-4946-b087-eafc3d23645b v0.1.0\_svn A version just for svn test [] [latest] []  2016-06-04 20:40:32.060096079 +0800 CST  healthy  } 
+time="2016-06-04T20:40:41+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/b13e4ffa-55ea-4c32-898a-2eb7f5d263e7" 
+time="2016-06-04T20:40:41+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=b13e4ffa-55ea-4c32-898a-2eb7f5d263e7 
+------------------------------
+• [SLOW TEST:12.002 seconds]
+Version
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:374
+  test svn vcs
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:373
+    should be able to get version via HTTP GET method.
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/version/version\_test.go:349
+------------------------------
+•time="2016-06-04T20:40:44+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0\_svn" 
+••
+Ran 20 of 20 Specs in 59.612 seconds
+SUCCESS! -- 20 Passed | 0 Failed | 0 Pending | 0 Skipped --- PASS: TestVersion (59.61s)
+PASS
+time="2016-06-04T20:40:44+08:00" level=error msg=EOF \_file\_="server.go:59" 
+ok  	github.com/caicloud/fornax/tests/version	59.645s
+time="2016-06-04T20:40:44+08:00" level=info msg="stop push create\_version\_\_bobUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_4d1ddff9\_e571\_49ce\_bb68\_afbf94c5e4b1 to " \_file\_="application.go:162" 
+time="2016-06-04T20:40:44+08:00" level=info msg="stop push create\_version\_\_aliceUID\_\_0bdcf049\_36cb\_4d2d\_ae4a\_70134c0788e8\_\_\_1 to " \_file\_="application.go:162" 
+=== RUN   TestYaml
+Running Suite: Yaml Suite
+=========================
+Random Seed: 1465044051
+Will run 8 of 8 specs
+time="2016-06-04T20:40:51+08:00" level=info msg="Waiting for fornax to start, please wait. If things went wrong, this may loop forever" \_file\_="setup.go:122" 
+time="2016-06-04T20:40:52+08:00" level=info msg="fornax started" \_file\_="setup.go:130" 
+time="2016-06-04T20:40:52+08:00" level=info msg="Env variant DOCKER\_HOST found, using env value: unix:///var/run/docker.sock" \_file\_="osutil.go:28" 
+time="2016-06-04T20:40:52+08:00" level=info msg="Env variant DOCKER\_CERT\_PATH not found, using default value: " \_file\_="osutil.go:25" 
+time="2016-06-04T20:40:52+08:00" level=info msg="Env variant REGISTRY\_LOCATION found, using env value: localhost:5000" \_file\_="osutil.go:28" 
+time="2016-06-04T20:40:52+08:00" level=info msg="Env variant REGISTRY\_USERNAME found, using env value: admin" \_file\_="osutil.go:28" 
+time="2016-06-04T20:40:52+08:00" level=info msg="Env variant REGISTRY\_PASSWORD found, using env value: admin\_password" \_file\_="osutil.go:28" 
+time="2016-06-04T20:41:15+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-basic-rest-version user\_id=aliceUID 
+time="2016-06-04T20:41:15+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:41:15+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" url="./tests/fake\_repo\_for\_test/Integration" 
+time="2016-06-04T20:41:15+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" url="./tests/fake\_repo\_for\_test/Integration" 
+time="2016-06-04T20:41:15+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" 
+time="2016-06-04T20:41:15+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/97858e8f-b5bd-40e1-a025-ac67057107e0" 
+time="2016-06-04T20:41:15+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/97858e8f-b5bd-40e1-a025-ac67057107e0" 
+time="2016-06-04T20:41:18+08:00" level=info msg="fornax receives creating service request" \_file\_="service.go:74" service\_name=test-deploy-service user\_id=aliceUID 
+time="2016-06-04T20:41:18+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:41:18+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" url="./tests/fake\_repo\_for\_test/deploy" 
+time="2016-06-04T20:41:18+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" url="./tests/fake\_repo\_for\_test/deploy" 
+time="2016-06-04T20:41:18+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" 
+time="2016-06-04T20:41:18+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/09fb9eb9-646d-46b4-97b7-c6cf1862b301" 
+time="2016-06-04T20:41:18+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/09fb9eb9-646d-46b4-97b7-c6cf1862b301" 
+time="2016-06-04T20:41:21+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 97858e8f-b5bd-40e1-a025-ac67057107e0 v0.1.0 A version just for Integration test [] [] []  0001-01-01 00:00:00 +0000 UTC    } 
+time="2016-06-04T20:41:21+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:41:21+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" url="./tests/fake\_repo\_for\_test/Integration" 
+time="2016-06-04T20:41:21+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" url="./tests/fake\_repo\_for\_test/Integration" 
+time="2016-06-04T20:41:21+08:00" level=info msg="the maximum number is 2\n" \_file\_="parser.go:99" 
+time="2016-06-04T20:41:21+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 805306368 cpu  768 numberContainers 2\n" \_file\_="resource.go:55" 
+•time="2016-06-04T20:41:21+08:00" level=info msg="About to run integration event." \_file\_="manager.go:57" 
+time="2016-06-04T20:41:21+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:21+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:21+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:21+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={mongo 0xc8201341c0 0xc82014a000} 
+time="2016-06-04T20:41:22+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={mongo 0xc8201341c0 0xc82014a000} 
+time="2016-06-04T20:41:22+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:22+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:22+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:22+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={ 0xc820134380 0xc82014b180} 
+time="2016-06-04T20:41:22+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={ 0xc820134380 0xc82014b180} 
+time="2016-06-04T20:41:32+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:41:32+08:00" level=info msg="About to run prebuild event." \_file\_="manager.go:73" 
+time="2016-06-04T20:41:32+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:32+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:32+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:32+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={ 0xc8201348c0 0xc82014b500} 
+time="2016-06-04T20:41:32+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={ 0xc8201348c0 0xc82014b500} 
+time="2016-06-04T20:41:32+08:00" level=info msg="copy file(/root/newfile) to /tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad/\n" \_file\_="docker.go:330" 
+time="2016-06-04T20:41:32+08:00" level=info msg="docker copy file finished" \_file\_="docker.go:361" 
+time="2016-06-04T20:41:32+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:36+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-basic-rest-version" tag=v0.1.0 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-basic-rest-version" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:36+08:00" level=info msg="About to run post build event." \_file\_="manager.go:84" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:36+08:00" level=info msg="remove docker image failed." \_file\_="operations.go:93" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:36+08:00" level=info msg="remove docker image failed." \_file\_="operations.go:93" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
+time="2016-06-04T20:41:36+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:41:36+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/a600d5f3-88c2-4d1e-95da-6004b08aa1ad" 
+time="2016-06-04T20:41:36+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=a600d5f3-88c2-4d1e-95da-6004b08aa1ad 
+------------------------------
+• [SLOW TEST:16.003 seconds]
+Yaml
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:243
+  with right version information
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:242
+    with the default operation
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:152
+      should be able to get version via HTTP GET method.
+      /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:151
+------------------------------
+time="2016-06-04T20:41:37+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 97858e8f-b5bd-40e1-a025-ac67057107e0 v0.1.0-integration A version just for test [] [] []  0001-01-01 00:00:00 +0000 UTC   integration } 
+time="2016-06-04T20:41:37+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:41:37+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" url="./tests/fake\_repo\_for\_test/Integration" 
+time="2016-06-04T20:41:37+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" url="./tests/fake\_repo\_for\_test/Integration" 
+time="2016-06-04T20:41:37+08:00" level=info msg="the maximum number is 2\n" \_file\_="parser.go:99" 
+time="2016-06-04T20:41:37+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 805306368 cpu  768 numberContainers 2\n" \_file\_="resource.go:55" 
+•time="2016-06-04T20:41:37+08:00" level=info msg="About to run integration event." \_file\_="manager.go:57" 
+time="2016-06-04T20:41:37+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:37+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:37+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:37+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={mongo 0xc820135500 0xc820408380} 
+time="2016-06-04T20:41:38+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={mongo 0xc820135500 0xc820408380} 
+time="2016-06-04T20:41:38+08:00" level=info msg="About to pull the image." \_file\_="docker.go:202" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:38+08:00" level=info msg="Successfully pull docker image." \_file\_="manager.go:285" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:38+08:00" level=info msg="Successfully pull the image." \_file\_="docker.go:207" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:38+08:00" level=info msg="About to create the container." \_file\_="docker.go:209" config={ 0xc820135a40 0xc820408700} 
+time="2016-06-04T20:41:38+08:00" level=info msg="Successfully create the container." \_file\_="docker.go:223" config={ 0xc820135a40 0xc820408700} 
+time="2016-06-04T20:41:48+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 939524096 cpu  896 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:41:48+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image="localhost:5000/mongo:3.0.5" 
+time="2016-06-04T20:41:48+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image="localhost:5000/alice/test-basic-rest-version:v0.1.0" 
+time="2016-06-04T20:41:48+08:00" level=info msg="Afer release, the userid aliceUID's left resource  memory 1073741824 cpu  1024 numberContainers 1\n" \_file\_="resource.go:75" 
+time="2016-06-04T20:41:48+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" 
+time="2016-06-04T20:41:48+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" 
+time="2016-06-04T20:41:48+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf" 
+time="2016-06-04T20:41:48+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=f93e8f3c-b9a9-4413-8f2c-8b0f4b110adf 
+------------------------------
+• [SLOW TEST:12.003 seconds]
+Yaml
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:243
+  with right version information
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:242
+    with the integration operation
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:194
+      should be able to get version via HTTP GET method.
+      /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:188
+------------------------------
+•time="2016-06-04T20:41:49+08:00" level=info msg="fornax receives creating version request" \_file\_="version.go:56" user\_id=aliceUID version={ 09fb9eb9-646d-46b4-97b7-c6cf1862b301 v0.1.0-deploy A version just for test deploy [] [] []  0001-01-01 00:00:00 +0000 UTC   publish } 
+time="2016-06-04T20:41:49+08:00" level=error \_file\_="manager.go:93" error="not found" user\_id=aliceUID 
+time="2016-06-04T20:41:49+08:00" level=info msg="About to clone fake repository." \_file\_="fake.go:34" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" url="./tests/fake\_repo\_for\_test/deploy" 
+time="2016-06-04T20:41:49+08:00" level=info msg="Successfully cloned fake repository." \_file\_="fake.go:41" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" url="./tests/fake\_repo\_for\_test/deploy" 
+time="2016-06-04T20:41:49+08:00" level=info msg="the maximum number is 0\n" \_file\_="parser.go:99" 
+time="2016-06-04T20:41:49+08:00" level=info msg="After apply, the userid aliceUID'sleft resource  memory 1073741824 cpu  1024 numberContainers 0\n" \_file\_="resource.go:55" 
+time="2016-06-04T20:41:50+08:00" level=info msg="About to run prebuild event." \_file\_="manager.go:73" 
+time="2016-06-04T20:41:50+08:00" level=info msg="About to build docker image." \_file\_="manager.go:125" image="localhost:5000/alice/test-deploy-service:v0.1.0-deploy" 
+•time="2016-06-04T20:41:53+08:00" level=info msg="Successfully built docker image." \_file\_="manager.go:153" image="localhost:5000/alice/test-deploy-service:v0.1.0-deploy" 
+time="2016-06-04T20:41:53+08:00" level=info msg="About to push docker image." \_file\_="manager.go:172" image="localhost:5000/alice/test-deploy-service" tag=v0.1.0-deploy 
+time="2016-06-04T20:41:54+08:00" level=info msg="Successfully pushed docker image." \_file\_="manager.go:188" image="localhost:5000/alice/test-deploy-service" 
+time="2016-06-04T20:41:54+08:00" level=info msg="Successfully remove docker image." \_file\_="manager.go:239" image="localhost:5000/alice/test-deploy-service:v0.1.0-deploy" 
+time="2016-06-04T20:41:54+08:00" level=info msg="About to run post build event." \_file\_="manager.go:84" 
+time="2016-06-04T20:41:54+08:00" level=error msg="Failed to deploy version" \_file\_="operations.go:162" err="Post http://127.0.0.1:3000/api/application/updateImage: malformed HTTP response \"\\x15\\x03\\x01\\x00\\x02\\x02\\x16\"" 
+time="2016-06-04T20:41:54+08:00" level=info msg="Successfully remove docker image." \_file\_="operations.go:91" image=busybox 
+time="2016-06-04T20:41:54+08:00" level=error msg="Operation failed" \_file\_="manager.go:134" event=&{05672924-024b-403f-a007-4cf4bb3b2948 create-version 0xc820260120 0xc8204ec690 0xc8204a4c00 map[service-name:test-deploy-service version-name:v0.1.0-deploy username:alice context-dir:/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948] 0x523be0 0xc82052be80 {false Post http://127.0.0.1:3000/api/application/updateImage: malformed HTTP response "\x15\x03\x01\x00\x02\x02\x16" false 0xc8204a4c60} {1 0} <nil>} 
+time="2016-06-04T20:41:54+08:00" level=info msg="no container can release resource\n" \_file\_="resource.go:61" 
+time="2016-06-04T20:41:54+08:00" level=info msg="About to remove repository." \_file\_="manager.go:213" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" 
+time="2016-06-04T20:41:54+08:00" level=info msg="Successfully removed repository with path" \_file\_="manager.go:229" destPath="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/05672924-024b-403f-a007-4cf4bb3b2948" 
+time="2016-06-04T20:41:54+08:00" level=info msg="Event finished, close file" \_file\_="manager.go:146" file="/tmp/fornax.Zz6jLZA7Wj/workdir/aliceUID/logs/05672924-024b-403f-a007-4cf4bb3b2948" 
+time="2016-06-04T20:41:54+08:00" level=info msg="Successfully removed log file" \_file\_="log.go:71" filename=05672924-024b-403f-a007-4cf4bb3b2948 
+time="2016-06-04T20:41:56+08:00" level=info msg="Error Message: Post http://127.0.0.1:3000/api/application/updateImage: malformed HTTP response \"\\x15\\x03\\x01\\x00\\x02\\x02\\x16\"\n" \_file\_="yaml\_test.go:226" 
+------------------------------
+• [SLOW TEST:6.003 seconds]
+Yaml
+/home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:243
+  with right version information
+  /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:242
+    with the deploy operation
+    /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:240
+      should be  able to get version via HTTP GET method.
+      /home/ubuntu/jenkins/workspace/fornax/src/github.com/caicloud/fornax/tests/yaml/yaml\_test.go:228
+------------------------------
+•
+Ran 8 of 8 Specs in 66.912 seconds
+SUCCESS! -- 8 Passed | 0 Failed | 0 Pending | 0 Skipped --- PASS: TestYaml (66.91s)
+PASS
+ok  	github.com/caicloud/fornax/tests/yaml	66.945s
+Stopping fornax\_kafka\_1 ... 
+Stopping fornax\_zookeeper\_1 ... 
+./tests/../scripts/local-up.sh: line 23: 15270 Aborted                 (core dumped) mongod -dbpath {TMPDIR}/db" --port 28017 >{MONGO\_LOG} 2>&1
+Stopping fornax\_kafka\_1 ... done
+Stopping fornax\_zookeeper\_1 ... done
+./tests/run-e2e.sh: line 52: 15244 Terminated              DOCKER\_HOST{DOCKER\_HOST:-"unix:///var/run/docker.sock"} ENABLE\_CAICLOUD\_AUTH="false" REGISTRY\_LOCATION="localhost:5000" REGISTRY\_USERNAME="admin" REGISTRY\_PASSWORD="admin\_password" KAFKA\_SERVER\_IP="localhost:9092" {FORNAX\_ROOT}"/scripts/local-up.sh @"
+Not including one-off containers created by `docker-compose run`.
+To include them, use `docker-compose rm --all`.
+This will be the default behavior in the next version of Compose.
+Removing fornax\_kafka\_1 ... 
+Removing fornax\_zookeeper\_1 ... 
+Removing fornax\_kafka\_1 ... done
+Removing fornax\_zookeeper\_1 ... done
+Going to remove fornax\_kafka\_1, fornax\_zookeeper\_1
+[Sat Jun  4 20:42:19 CST 2016] e2e test cleanup complete
+Started calculate disk usage of build
+Finished Calculation of disk usage of build in 0 seconds
+Started calculate disk usage of workspace
+Finished Calculation of disk usage of workspace in 0 seconds
+Setting status of 99d351b6a8c0c0e0f014bbfd0db09af42f57daf2 to SUCCESS with url http://43.254.54.241:8080/ and message: 'Build finished. No test results found.'
+Using context: e2e-test
+Finished: SUCCESS
+\end{lstlisting}
