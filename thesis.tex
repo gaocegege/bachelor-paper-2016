@@ -25,17 +25,17 @@
 
 % \makeenglishtitle
 
-% \makeatletter
-% \ifsjtu@submit\relax
-% 	\includepdf{pdf/original.pdf}
-% 	\cleardoublepage
-% 	\includepdf{pdf/authorization.pdf}
-% 	\cleardoublepage
-% \else
-% 	\makeDeclareOriginal
-% 	\makeDeclareAuthorization
-% \fi
-% \makeatother
+\makeatletter
+\ifsjtu@submit\relax
+	\includepdf{pdf/original.pdf}
+	\cleardoublepage
+	\includepdf{pdf/authorization.pdf}
+	\cleardoublepage
+\else
+	\makeDeclareOriginal
+	\makeDeclareAuthorization
+\fi
+\makeatother
 
 
 \frontmatter 	% 使用罗马数字对前言编号
