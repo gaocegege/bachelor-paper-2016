@@ -1,4 +1,5 @@
 *.pdf
+!thesis.pdf
 !statement.pdf
 *.bak
 *.fls
